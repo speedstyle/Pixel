@@ -13,3 +13,7 @@ Moral support / some code: <a href="https://twitter.com/yeahimdaf">@DafsCode</a>
 This can also be found on the <a href="https://github.com/LumiteDubbz/Pixel/wiki">Wiki</a>, but oh well, I'll put it here as well.
 
 Although you <em>can</em> DM me on Twitter, the best place to get support is in the official Pixel Discord Server. Link coming soon.
+
+# Indev
+
+This bot is in development! Some features may not work as expected or even at all.
