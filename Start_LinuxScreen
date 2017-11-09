@@ -1,0 +1,3 @@
+echo Screen will keep your bot online, even when you aren't SSHed into your server/got your terminal open. CTRL A+D to exit the screen and keep the bot running, and CTRL C to close the bot altogether.
+sleep 10
+screen -s pixel node src/app.js
