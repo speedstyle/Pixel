@@ -5,8 +5,8 @@ Visit the <a href="https://github.com/LumiteDubbz/Pixel/wiki">Wiki</a> to learn 
 
 # Credits
 
-Main code: <a href="https://twitter.com/lumitedubbz">@LumiteDubbz</a>
-Moral support / some code: <a href="https://twitter.com/yeahimdaf>@DafsCode</a>
+Main code: <a href="https://twitter.com/lumitedubbz">@LumiteDubbz</a><br>
+Moral support / some code: <a href="https://twitter.com/yeahimdaf">@DafsCode</a>
 
 # Support
 
