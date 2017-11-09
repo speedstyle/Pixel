@@ -1,2 +1,3 @@
+<center>
 # Pixel
-An open-source Discord bot, written in discord.js
+An open-source Discord bot, written in discord.js</center>
