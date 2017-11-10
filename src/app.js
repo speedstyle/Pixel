@@ -59,6 +59,8 @@ client.on("message", async message => {
     var pingMessage = await message.channel.send("Testing speed, this message will be edited.");
     pingMessage.edit(`Pong! The time taken between me sending the "Testing speed..." message and editing it to this is ${pingMessage.createdTimestamp - message.createdTimestamp}ms. Discord's API Latency (that cannot be controlled by my connection speed) is ${Math.round(client.ping)}ms`);
   }
+  // Now for embeds! The title is the top part of the embed, usually in bold text. The color is, in this situation is a decimal code for a light green-y blue colour.
+  // The description is best described as the main body of text 
   if(command === "48yearman") {
     message.reply({embed: {
       title: "48yearman Command",
@@ -71,6 +73,7 @@ client.on("message", async message => {
           title: "Cat Command",
           color: "65399",
           description: "Here's a cat, as per your request:",
+          // The "file" attatched to the embed in this situation is a random cat image
           file: new Discord.Attachment('http://lorempixel.com/500/500/cats/', 'cat.jpg')
         }
       })
@@ -85,6 +88,7 @@ client.on("message", async message => {
   message.author.send("Hey there, here is all of the information you need!", {embed: {
     title: "Help Command",
     color: "3447003",
+    // "\n" just creates a new line
     description: "Available commands:\n**Help**: This command, DMs you all of the available commands.\n**Cat**: Sends a random cat image!\n**Ping**: Sends an initial message and instantly edits it to the amount of time taken to perform the edit.\n**48yearman**: Sends the infamous '48 year man from somalia' copypasta.\n**Bot creator's GitHub Repository**: https://github.com/lumitedubbz/pixel"
   }
 })
