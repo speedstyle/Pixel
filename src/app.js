@@ -1,7 +1,7 @@
 // Define what Discord and credentials mean, and set the new client
 // as Discord's bot client
-const Discord = require("../node_modules/discord.js");
-const credentials = require("../credentials.json");
+const Discord = require("discord.js");
+const credentials = require("../config/credentials.json");
 const client = new Discord.Client();
 
 // Whenever you see "${credentials.}", the line of code is calling to the "credentials.json" file
@@ -57,18 +57,15 @@ client.on("message", async message => {
   // - "%ping", the bot will return the amount of miliseconds taken to respond
   if(command === "ping") {
     var pingMessage = await message.channel.send("Testing speed, this message will be edited.");
-    pingMessage.edit(`Pong! The time taken between me sending the "Testing speed..." message and editing it to this is ${m.createdTimestamp - message.createdTimestamp}ms. Discord's API Latency (that cannot be controlled by my connection speed) is ${Math.round(client.ping)}ms`);
-  }
-  if(command === "kick") {
-  if(message.author.hasPermission('KICK_MEMBERS') === false
-    return message.reply("Sorry, you don't have permissions to use this!"));
-  if(message.member.role.hasPermission("KICK_MEMBERS") === true
-    await member.kick;
-    return message.reply(`${member.user.tag} has been kicked by ${message.author.tag} because: ${reason}`));
+    pingMessage.edit(`Pong! The time taken between me sending the "Testing speed..." message and editing it to this is ${pingMessage.createdTimestamp - message.createdTimestamp}ms. Discord's API Latency (that cannot be controlled by my connection speed) is ${Math.round(client.ping)}ms`);
   }
   if(command === "48yearman") {
-    message.reply(`Hello am 48 year man from somalia. Sorry for my bed england. I selled my wife for internet connection for play conter strik and i want to become the goodest player like you I play with 400 ping on brazil and i am global elite 2. pls no copy pasterio my story`));
+    message.reply("Hello am 48 year man from somalia. Sorry for my bed england. I selled my wife for internet connection for play conter strik and i want to become the goodest player like you I play with 400 ping on brazil and i am global elite 2. pls no copy pasterio my story");
   }
+  if (command === "cat") {
+        message.channel.send("Here you go", {
+            file: new Discord.Attachment('http://lorempixel.com/500/500/cats/', 'cat.jpg')});
+          }
 });
 
 // This physically logs in to the bot's account (Bot'sUsername#1234)
