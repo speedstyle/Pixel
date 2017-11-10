@@ -59,14 +59,13 @@ client.on("message", async message => {
     var pingMessage = await message.channel.send("Testing speed, this message will be edited.");
     pingMessage.edit(`Pong! The time taken between me sending the "Testing speed..." message and editing it to this is ${m.createdTimestamp - message.createdTimestamp}ms. Discord's API Latency (that cannot be controlled by my connection speed) is ${Math.round(client.ping)}ms`);
   }
-  if(command === "cat") {
-    var snekfetch = require('snekfetch');
-    var fs = require('fs');
-    snekfetch.get('http://lorempixel.com/500/500/cats/')
-    .then(r => fs.writeFile('cat.jpg', r.body));
-    message.channel.send("Here's a cut, as requested!", {
-		file: "cat.jpg"})
-  };
+  if(command === "kick") {
+  if(message.author.hasPermission('KICK_MEMBERS') === false
+    return message.reply("Sorry, you don't have permissions to use this!"));
+  if(message.member.role.hasPermission("KICK_MEMBERS") === true
+    await member.kick;
+    return message.reply(`${member.user.tag} has been kicked by ${message.author.tag} because: ${reason}`));
+  }
 });
 
 // This physically logs in to the bot's account (Bot'sUsername#1234)
