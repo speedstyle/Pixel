@@ -66,6 +66,9 @@ client.on("message", async message => {
     await member.kick;
     return message.reply(`${member.user.tag} has been kicked by ${message.author.tag} because: ${reason}`));
   }
+  if(command === "48yearman") {
+    message.reply(`Hello am 48 year man from somalia. Sorry for my bed england. I selled my wife for internet connection for play conter strik and i want to become the goodest player like you I play with 400 ping on brazil and i am global elite 2. pls no copy pasterio my story`));
+  }
 });
 
 // This physically logs in to the bot's account (Bot'sUsername#1234)
