@@ -60,12 +60,35 @@ client.on("message", async message => {
     pingMessage.edit(`Pong! The time taken between me sending the "Testing speed..." message and editing it to this is ${pingMessage.createdTimestamp - message.createdTimestamp}ms. Discord's API Latency (that cannot be controlled by my connection speed) is ${Math.round(client.ping)}ms`);
   }
   if(command === "48yearman") {
-    message.reply("Hello am 48 year man from somalia. Sorry for my bed england. I selled my wife for internet connection for play conter strik and i want to become the goodest player like you I play with 400 ping on brazil and i am global elite 2. pls no copy pasterio my story");
+    message.reply({embed: {
+      title: "48yearman Command",
+      color: "65399",
+      description: "Hello am 48 year man from somalia. Sorry for my bed england. I selled my wife for internet connection for play conter strik and i want to become the goodest player like you I play with 400 ping on brazil and i am global elite 2. pls no copy pasterio my story",
+    }}
   }
   if (command === "cat") {
-        message.channel.send("Here you go", {
-            file: new Discord.Attachment('http://lorempixel.com/500/500/cats/', 'cat.jpg')});
-          }
+        message.channel.send({embed: {
+          title: "Cat Command",
+          color: "65399",
+          description: "Here's a cat, as per your request:",
+          file: new Discord.Attachment('http://lorempixel.com/500/500/cats/', 'cat.jpg')
+        }
+      })
+    }
+  if (command === "help") {
+        message.channel.send(`${message.author}:`, {embed: {
+    title: "Help Command",
+    color: "3447003",
+    description: "Check your DMs :smile:"
+  }
+})
+  message.author.send("Hey there, here is all of the information you need!", {embed: {
+    title: "Help Command",
+    color: "3447003",
+    description: "Available commands:\n**Help**: This command, DMs you all of the available commands.\n**Cat**: Sends a random cat image!\n**Ping**: Sends an initial message and instantly edits it to the amount of time taken to perform the edit.\n**48yearman**: Sends the infamous '48 year man from somalia' copypasta.\n**Bot creator's GitHub Repository**: https://github.com/lumitedubbz/pixel"
+  }
+})
+}
 });
 
 // This physically logs in to the bot's account (Bot'sUsername#1234)
