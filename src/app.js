@@ -64,7 +64,7 @@ client.on("message", async message => {
       title: "48yearman Command",
       color: "65399",
       description: "Hello am 48 year man from somalia. Sorry for my bed england. I selled my wife for internet connection for play conter strik and i want to become the goodest player like you I play with 400 ping on brazil and i am global elite 2. pls no copy pasterio my story",
-    }}
+    }})
   }
   if (command === "cat") {
         message.channel.send({embed: {
