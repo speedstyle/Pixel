@@ -23,14 +23,20 @@ client.on("ready", () => {
 })
 // Upon being added to a server, the bot will tell the terminal the server's name, ID and number of members
 client.on("guildCreate", guild => {
-  console.log(`I just joined a server! It's name is: ${guild.name}, the ID is: ${guild.id} and it has ${guild.memberCount} members (including me)!`);
-  // This changes the bot's game to the amount of servers it is in
-  client.user.setPresence({
-    game: { // "${client.guilds.size} is the amount of guilds that the bot is in"
-      name: `on ${client.guilds.size} servers | ${credentials.prefix}help`,
-      // "type: 0" is the standard "Online" (the green one), you can look at the discord.js docs to -
-      // - view all of the other "types" https://discord.js.org
-      type: 0
+  var mainChannel = guild.mainChannel;
+
+  if (mainChannel !== undefined) {
+  return mainChannel.send({embed:
+    .setAuthor("Hey! I'm Pixel :smile:")
+    .addField(`Hey there, ${guild.name}! I'm ${credentials.botName}. You can view all of the commands by typing "${credentials.prefix}help". I hope you enjoy using me!`)
+  });
+}
+console.log(`I just joined a server! It's name is: ${guild.name}, the ID is: ${guild.id} and it has ${guild.memberCount} members (including me)!`);
+// This changes the bot's game to the amount of servers it is in
+client.user.setPresence({
+  game: { // "${client.guilds.size} is the amount of guilds that the bot is in"
+  name: `on ${client.guilds.size} servers | ${credentials.prefix}help`,
+  type: 0
     }
   });
 });
@@ -59,18 +65,18 @@ client.on("message", async message => {
     var pingMessage = await message.channel.send("Testing speed, this message will be edited.");
     pingMessage.edit(`Pong! The time taken between me sending the "Testing speed..." message and editing it to this is ${pingMessage.createdTimestamp - message.createdTimestamp}ms. Discord's API Latency (that cannot be controlled by my connection speed) is ${Math.round(client.ping)}ms`);
   }
-  // Now for embeds! The title is the top part of the embed, usually in bold text. The color is, in this situation is a decimal code for a light green-y blue colour.
-  // The description is best described as the main body of text 
+  // Now for embeds! The author is the top part of the embed, usually in bold text. The color is, in this situation is a decimal code for a light green-y blue colour.
+  // The description is best described as the main body of text
   if(command === "48yearman") {
     message.reply({embed: {
-      title: "48yearman Command",
+      author: "48yearman Command",
       color: "65399",
       description: "Hello am 48 year man from somalia. Sorry for my bed england. I selled my wife for internet connection for play conter strik and i want to become the goodest player like you I play with 400 ping on brazil and i am global elite 2. pls no copy pasterio my story",
     }})
   }
   if (command === "cat") {
         message.channel.send({embed: {
-          title: "Cat Command",
+          author: "Cat Command",
           color: "65399",
           description: "Here's a cat, as per your request:",
           // The "file" attatched to the embed in this situation is a random cat image
@@ -80,19 +86,48 @@ client.on("message", async message => {
     }
   if (command === "help") {
         message.channel.send(`${message.author}:`, {embed: {
-    title: "Help Command",
+    author: "Help Command",
     color: "3447003",
     description: "Check your DMs :smile:"
   }
 })
   message.author.send("Hey there, here is all of the information you need!", {embed: {
-    title: "Help Command",
+    author: "Help Command",
     color: "3447003",
     // "\n" just creates a new line
     description: "Available commands:\n**Help**: This command, DMs you all of the available commands.\n**Cat**: Sends a random cat image!\n**Ping**: Sends an initial message and instantly edits it to the amount of time taken to perform the edit.\n**48yearman**: Sends the infamous '48 year man from somalia' copypasta.\n**Bot creator's GitHub Repository**: https://github.com/lumitedubbz/pixel"
   }
 })
 }
+  if(command === "kick") {
+    // In JavaScript "if(!something)" means "if the thing inside the brackets is false, do this".
+    // ".hasPermission" checks if the author of the kick message command has the Discord role permission to kick members.
+    // "return..." stops the entire operation.
+    if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("sorry, you don't have permission to kick members.");
+    if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("it seems I do not have permission to perform this action. Does my role have the kick membes permission?");
+    // "message.mentions.users.first()" is the first user @mentioned in the command.
+    let userToKick = message.mentions.users.first();
+    let reason = args.slice(1).join(" ");
+    let modLog = client.channels.find("name", "pixel-log");
+
+    if(!modLog) return message.channel.send("No moderator log found. Performing action but it WILL NOT BE LOGGED.");
+    // The line of code below tells the bot that is the first mention is less than one character long (in this case, just an "@" symbol), cancel the operation.
+    if(message.mentions.users.size < 1) return message.reply("you did not provide a user to kick. Aborting operation.");
+    if(!reason) reason="No reason provided";
+    if(!message.guild.member(userToKick)
+    // ".kickable" is the query of whether or not the user can be kicked.
+    .kickable) return message.reply("that user has a role above my highest role.")
+
+    // This is the actual kick.
+    await message.guild.member(userToKick).kick(reason)
+
+    var kickEmbed = new Discord.RichEmbed()
+    .setAuthor(`User kicked: ${userToKick.username}`, userToKick.displayAvatarURL)
+    .addField(`Full information: **User kicked**: ${userToKick.tag}\n**Moderator**: ${message.author.tag}\n**Reason**: ${reason}`);
+    modLog.send({embed: kickEmbed})
+    // ".catch(error...)" catches and errors before they happen.
+          .catch(error => message.channel.send(`Sorry ${message.author} I couldn't kick because of : ${error}`));
+  }
 });
 
 // This physically logs in to the bot's account (Bot'sUsername#1234)
