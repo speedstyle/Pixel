@@ -3,6 +3,9 @@
 const Discord = require("discord.js");
 const credentials = require("../config/credentials.json");
 const client = new Discord.Client();
+const fs = require('fs');
+
+var userData =JSON.parse(fs.readFileSync('../config/userData.json', 'utf8'));
 
 // Whenever you see "${credentials.}", the line of code is calling to the "credentials.json" file
 // Whener you see "$client.", the line of code is calling to the Discord client's code (../node_modules/discord.js)
@@ -24,22 +27,21 @@ client.on("ready", () => {
 // Upon being added to a server, the bot will tell the terminal the server's name, ID and number of members
 client.on("guildCreate", guild => {
   var mainChannel = guild.mainChannel;
-
+  console.log(`I just joined a server! It's name is: ${guild.name}, the ID is: ${guild.id} and it has ${guild.memberCount} members (including me)!`);
   if (mainChannel !== undefined) {
-  return mainChannel.send({embed:
-    .setAuthor("Hey! I'm Pixel :smile:")
+    var joinEmbed = new Discord.RichEmbed()
     .addField(`Hey there, ${guild.name}! I'm ${credentials.botName}. You can view all of the commands by typing "${credentials.prefix}help". I hope you enjoy using me!`)
-  });
-}
-console.log(`I just joined a server! It's name is: ${guild.name}, the ID is: ${guild.id} and it has ${guild.memberCount} members (including me)!`);
-// This changes the bot's game to the amount of servers it is in
-client.user.setPresence({
-  game: { // "${client.guilds.size} is the amount of guilds that the bot is in"
-  name: `on ${client.guilds.size} servers | ${credentials.prefix}help`,
-  type: 0
-    }
-  });
+    .setAuthor("Hey! I'm Pixel :smile:")
+    mainChannel.send({embed: joinEmbed})
+  }
+  client.user.setPresence({
+    game: { // "${client.guilds.size} is the amount of guilds that the bot is in"
+    name: `on ${client.guilds.size} servers | ${credentials.prefix}help`,
+    type: 0
+      }
+    });
 });
+// This changes the bot's game to the amount of servers it is in
 // Upon being kicked or banned from a server, the bot will perform these tasks
 client.on("guildDelete", guild => {
   console.log(`I was kicked or banned from ${guild.name}. It's ID is ${guild.id}`);
@@ -107,13 +109,13 @@ client.on("message", async message => {
     if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("it seems I do not have permission to perform this action. Does my role have the kick membes permission?");
     // "message.mentions.users.first()" is the first user @mentioned in the command.
     let userToKick = message.mentions.users.first();
-    let reason = args.slice(1).join(" ");
+    let kickReason = args.slice(1).join(" ");
     let modLog = client.channels.find("name", "pixel-log");
 
     if(!modLog) return message.channel.send("No moderator log found. Performing action but it WILL NOT BE LOGGED.");
     // The line of code below tells the bot that is the first mention is less than one character long (in this case, just an "@" symbol), cancel the operation.
     if(message.mentions.users.size < 1) return message.reply("you did not provide a user to kick. Aborting operation.");
-    if(!reason) reason="No reason provided";
+    if(!kickReason) reason="No reason provided";
     if(!message.guild.member(userToKick)
     // ".kickable" is the query of whether or not the user can be kicked.
     .kickable) return message.reply("that user has a role above my highest role.")
@@ -128,6 +130,42 @@ client.on("message", async message => {
     // ".catch(error...)" catches and errors before they happen.
           .catch(error => message.channel.send(`Sorry ${message.author} I couldn't kick because of : ${error}`));
   }
+  if(command === "ban") {
+    if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply("sorry, you don't have permission to ban members.");
+    if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) return message.reply("it seems I do not have permission to perform this action. Does my role have the kick membes permission?");
+    // "message.mentions.users.first()" is the first user @mentioned in the command.
+    let userToBan = message.mentions.users.first();
+    let banReason = args.slice(1).join(" ");
+    let modLog = client.channels.find("name", "pixel-log");
+
+    if(!modLog) return message.channel.send("No moderator log found. Performing action but it WILL NOT BE LOGGED.");
+    // The line of code below tells the bot that is the first mention is less than one character long (in this case, just an "@" symbol), cancel the operation.
+    if(message.mentions.users.size < 1) return message.reply("you did not provide a user to kick. Aborting operation.");
+    if(!banReason) reason="No reason provided";
+    if(!message.guild.member(userToKick)
+    // ".kickable" is the query of whether or not the user can be kicked.
+    .kickable) return message.reply("that user has a role above my highest role.")
+
+    // This is the actual kick.
+    await message.guild.member(userToKick).ban(reason)
+
+    var banEmbed = new Discord.RichEmbed()
+    .setAuthor(`User kicked: ${userToKick.username}`, userToKick.displayAvatarURL)
+    .addField(`Full information: **User kicked**: ${userToKick.tag}\n**Moderator**: ${message.author.tag}\n**Reason**: ` + reason + ".");
+    modLog.send({embed: banEmbed})
+    userToBan.send({embed: banEmbed})
+    // ".catch(error...)" catches and errors before they happen.
+          .catch(error => message.channel.send(`Sorry ${message.author} I couldn't kick because of : ${error}`));
+  }
+  if (!userData[message.author.id]) userData[message.author.id] = {
+    messagesSent: 0
+  }
+
+  userData[message.author.id].messagesSent++;
+
+  fs.writeFile('config/userData.json', JSON.stringify(userData), (err) => {
+    if (err) console.error(err);
+  });
 });
 
 // This physically logs in to the bot's account (Bot'sUsername#1234)
