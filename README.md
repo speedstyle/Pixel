@@ -14,6 +14,10 @@ This can also be found on the <a href="https://github.com/LumiteDubbz/Pixel/wiki
 
 Although you <em>can</em> DM me on Twitter, the best place to get support is in the official Pixel Discord Server. Click <a href="https://discord.me/pixelsupport"><u>here</u></a> to join the <strong>Official Support Server</strong>.
 
+# Newest update:
+
+Update 0.5.0: Now using Commando Framework, removed lots of commands, added commando's default ones as well as reply and embed commands, working on porting old commands to commando :D
+
 # Indev
 
 This bot is in development! Some features may not work as expected or even at all. We are constantly updating the bot, so feature requests are always appreciated!
