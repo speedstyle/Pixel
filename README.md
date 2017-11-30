@@ -6,7 +6,9 @@ Visit the <a href="https://github.com/LumiteDubbz/Pixel/wiki">Wiki</a> to learn 
 # Credits
 
 Majority of the code: <a href="https://twitter.com/lumitedubbz">@LumiteDubbz</a><br>
-Quite a lot of the code: <a href="https://twitter.com/yeahimdaf">@DafsCode</a>
+Lots of code (pull request): <a href="https://github.com/assley">@Assley</a><br>
+Some code: <a href="https://twitter.com/yeahimdaf">@DafsCode</a>
+
 
 # Support
 
