@@ -18,7 +18,7 @@ Although you <em>can</em> DM me on Twitter, the best place to get support is in 
 
 # Newest update:
 
-Update 0.5.0: Now using Commando Framework, removed lots of commands, added commando's default ones as well as reply and embed commands, working on porting old commands to commando :D
+Update 0.6.0: Merged a pull request from Assley, which included a bumch of features like kick and ban commands, hetter organisation and some bug fixes. You can view all of the changes by looking at who contributed to each file.
 
 NOTE: My PC is currently broken, I am working on getting it fixed but in the meantime, Pixel will recieve no updates.
 
