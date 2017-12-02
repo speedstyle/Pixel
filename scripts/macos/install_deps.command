@@ -5,5 +5,5 @@ cd "$(dirname "$BASH_SOURCE")" || {
 exit 1
 }
 
-cd ../
-npm install --no-optional
+cd ../../
+npm install
