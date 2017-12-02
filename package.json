@@ -1,7 +1,7 @@
 {
   "name": "pixel",
-  "version": "0.0.1",
-  "description": "A free to use, open-source and powerfull bot, written in Discord.js",
+  "version": "0.7.0",
+  "description": "A free to use, open-source and powerful bot, written in Discord.js",
   "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,7 +14,8 @@
     "discord.js",
     "discord",
     "javascript",
-    "pixel"
+    "pixel",
+    "patron.js"
   ],
   "author": "LumiteDubbz#7496",
   "license": "MIT",
