@@ -36,7 +36,7 @@ class Softban extends Command {
 
   async run(msg, args) {
     if (args.user.bannable === false) {
-      return msg.channel.send('I cannot ban ' + args.user.tag + '.');
+      return msg.channel.send('I cannot softban ' + args.user.tag + '.');
     }
 
     await msg.guild.ban(args.user, { reason: args.reason.length === 0 ? '' : args.reason, days: args.days });
