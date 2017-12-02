@@ -1,2 +1,2 @@
-cd ../
+cd ../../
 node src/app.js
