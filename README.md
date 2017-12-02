@@ -3,24 +3,17 @@ An open-source Discord bot, written with: Library: Discord.js, Framework: Patron
 
 Visit the <a href="https://github.com/LumiteDubbz/Pixel/wiki">Wiki</a> to learn how to setup the bot for yourself, as well as the requirements.
 
-# Credits
+# Developers
 
-Majority of the code: <a href="https://twitter.com/lumitedubbz">@LumiteDubbz</a><br>
-Lots of code (pull request): <a href="https://github.com/assley">@Assley</a><br>
-Some code: <a href="https://twitter.com/yeahimdaf">@DafsCode</a>
-
+LumiteDubbz: <a href="https://twitter.com/lumitedubbz">@LumiteDubbz</a><br>
+AssLey: <a href="https://github.com/assley">@Assley</a><br>
+Daf (@DafsCode) quit developing Pixel, but credit to him for some commands.
 
 # Support
 
 This can also be found on the <a href="https://github.com/LumiteDubbz/Pixel/wiki">Wiki</a>, but oh well, I'll put it here as well.
 
 Although you <em>can</em> DM me on Twitter, the best place to get support is in the official Pixel Discord Server. Click <a href="https://discord.me/pixelsupport"><u>here</u></a> to join the <strong>Official Support Server</strong>.
-
-# Newest update:
-
-Update 0.6.0: Merged a pull request from Assley, which included a bumch of features like kick and ban commands, hetter organisation and some bug fixes. You can view all of the changes by looking at who contributed to each file.
-
-NOTE: My PC is currently broken, I am working on getting it fixed but in the meantime, Pixel will recieve no updates.
 
 # Indev
 
