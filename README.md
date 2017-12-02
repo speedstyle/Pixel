@@ -1,5 +1,5 @@
 # Pixel
-An open-source Discord bot, written in patron.js (SoonTM)
+An open-source Discord bot, written with: Library: Discord.js, Framework: Patron.js
 
 Visit the <a href="https://github.com/LumiteDubbz/Pixel/wiki">Wiki</a> to learn how to setup the bot for yourself, as well as the requirements.
 

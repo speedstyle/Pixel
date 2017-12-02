@@ -1,20 +1,21 @@
-const { Command } = require('discord.js-commando');
+const { Command, Argument } = require('patron.js');
 const { RichEmbed } = require('discord.js');
 
 class Embed extends Command {
-  constructor(client) {
-    super(client, {
-      name: 'embed',
-      group: 'member',
-      memberName: 'embed',
+  constructor() {
+    super({
+      names: ['embed'],
+      groupName: 'member',
       description: 'Embeds the text you provide.',
-      examples: ['embed Embeds are cool.'],
+      guildOnly: false,
       args: [
-        {
+        new Argument({
           key: 'text',
-          prompt: 'What text would you like the bot to embed?',
-          type: 'string'
-        }
+          name: 'text',
+          type: 'string',
+          example: 'This looks cool',
+          remainder: true
+        })
       ]
     });
   }
@@ -26,8 +27,8 @@ class Embed extends Command {
       .setColor(0x00AE86)
       .setTimestamp();
 
-    return msg.embed(embed);
+    return msg.channel.send({ embed });
   }
-};
+}
 
-module.exports = Embed;
+module.exports = new Embed();
