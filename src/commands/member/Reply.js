@@ -1,19 +1,18 @@
-const { Command } = require('discord.js-commando');
+const { Command } = require('patron.js');
 
 class Reply extends Command {
-  constructor(client) {
-    super(client, {
-      name: 'reply',
-      group: 'member',
-      memberName: 'reply',
+  constructor() {
+    super({
+      names: ['reply'],
+      groupName: 'member',
       description: 'Replies with a Message.',
-      examples: ['reply']
+      guildOnly: false
     });
   }
 
   run(msg) {
-    return msg.say('Hi, I\'m awake!');
+    return msg.channel.send('Hi, I\'m awake!');
   }
 }
 
-module.exports = Reply;
+module.exports = new Reply();

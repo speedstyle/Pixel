@@ -1,40 +1,40 @@
-const { Command } = require('discord.js-commando');
+const { Command, Argument } = require('patron.js');
 
 class Kick extends Command {
-  constructor(client) {
-    super(client, {
-      name: 'kick',
-      aliases: ['boot'],
-      group: 'moderator',
-      memberName: 'kick',
+  constructor() {
+    super({
+      names: ['kick', 'boot'],
+      groupName: 'moderator',
       description: 'Kicks a member',
-      examples: ['kick Shelby'],
       clientPermissions: ['KICK_MEMBERS'],
       args: [
-        {
+        new Argument({
           key: 'member',
-          prompt: 'Who would you like to kick?',
-          type: 'member'
-        },
-        {
+          name: 'member',
+          type: 'member',
+          example: 'Savannah'
+        }),
+        new Argument({
           key: 'reason',
+          name: 'reason',
           type: 'string',
-          prompt: '',
-          default: ''
-        }
+          example: 'Totally an accident',
+          defaultValue: '',
+          remainder: true
+        })
       ]
     });
   }
 
   async run(msg, args) {
     if (args.member.kickable === false) {
-      return msg.say('I cannot kick ' + args.member.user.tag + '.');
+      return msg.channel.send('I cannot kick ' + args.member.user.tag + '.');
     }
 
     await args.member.kick(args.reason.length === 0 ? '' : args.reason);
 
-    return msg.say('Successfully kicked ' + args.member.user.tag + '.' + (args.reason.length === 0 ? '' : '\nReason: ' + args.reason));
+    return msg.channel.send('Successfully kicked ' + args.member.user.tag + '.' + (args.reason.length === 0 ? '' : '\n**Reason**: ' + args.reason));
   }
 }
 
-module.exports = Kick;
+module.exports = new Kick();

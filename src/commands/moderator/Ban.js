@@ -1,40 +1,40 @@
-const { Command } = require('discord.js-commando');
+const { Command, Argument } = require('patron.js');
 
 class Ban extends Command {
-  constructor(client) {
-    super(client, {
-      name: 'ban',
-      aliases: ['hammer'],
-      group: 'moderator',
-      memberName: 'ban',
-      description: 'bans a member',
-      examples: ['ban me'],
+  constructor() {
+    super({
+      names: ['ban', 'hammer'],
+      groupName: 'moderator',
+      description: 'Bans a user',
       clientPermissions: ['BAN_MEMBERS'],
       args: [
-        {
-          key: 'member',
-          prompt: 'Who would you like to ban?',
-          type: 'member'
-        },
-        {
+        new Argument({
+          key: 'user',
+          name: 'user',
+          type: 'user',
+          example: 'Cock#1525'
+        }),
+        new Argument({
           key: 'reason',
+          name: 'reason',
           type: 'string',
-          prompt: '',
-          default: ''
-        }
+          example: 'Why not',
+          defaultValue: '',
+          remainder: true
+        })
       ]
     });
   }
 
   async run(msg, args) {
-    if (args.member.bannable === false) {
-      return msg.say('I cannot ban ' + args.member.user.tag + '.');
+    if (args.user.bannable === false) {
+      return msg.channel.send('I cannot ban ' + args.user.tag + '.');
     }
 
-    await msg.guild.ban(args.member, { reason: args.reason.length === 0 ? '' : args.reason });
+    await msg.guild.ban(args.user, { reason: args.reason.length === 0 ? '' : args.reason });
 
-    return msg.say('Successfully banned ' + args.member.user.tag + '.' + (args.reason.length === 0 ? '' : '\nReason: ' + args.reason));
+    return msg.channel.send('Successfully banned ' + args.user.tag + '.' + (args.reason.length === 0 ? '' : '\n**Reason**: ' + args.reason));
   }
 }
 
-module.exports = Ban;
+module.exports = new Ban();
