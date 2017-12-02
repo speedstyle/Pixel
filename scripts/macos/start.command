@@ -5,5 +5,5 @@ cd "$(dirname "$BASH_SOURCE")" || {
 exit 1
 }
 
-cd ../
+cd ../../
 node src/app.js
