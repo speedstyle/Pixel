@@ -7,7 +7,8 @@ Visit the <a href="https://github.com/LumiteDubbz/Pixel/wiki">Wiki</a> to learn 
 
 LumiteDubbz: <a href="https://twitter.com/lumitedubbz">@LumiteDubbz</a><br>
 AssLey: <a href="https://github.com/assley">@Assley</a><br>
-Daf (@DafsCode) quit developing Pixel, but credit to him for some commands.
+Daf (@DafsCode) quit developing Pixel, but credit to him for some commands. He is also the hosting manager, so if the bot is offline, ping him! 
+
 
 # Support
 
