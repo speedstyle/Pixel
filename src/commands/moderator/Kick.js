@@ -1,4 +1,5 @@
 const { Command, Argument } = require('patron.js');
+const utility = require('../../utility');
 
 class Kick extends Command {
   constructor() {
@@ -26,14 +27,14 @@ class Kick extends Command {
     });
   }
 
-  async run(msg, args) {
+  async run(msg, args, text) {
     if (args.member.kickable === false) {
-      return msg.channel.send('I cannot kick ' + args.member.user.tag + '.');
+      return text.sendError('I cannot kick ' + utility.String.boldify(args.member.user.tag) + '.');
     }
 
     await args.member.kick(args.reason.length === 0 ? '' : args.reason);
 
-    return msg.channel.send('Successfully kicked ' + args.member.user.tag + '.' + (args.reason.length === 0 ? '' : '\n**Reason**: ' + args.reason));
+    return text.send('Successfully kicked ' + args.member.user.tag + '.' + (args.reason.length === 0 ? '' : '\n**Reason**: ' + args.reason));
   }
 }
 

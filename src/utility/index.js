@@ -1,4 +1,7 @@
 module.exports = {
-  Constant: require('./Constants.js'),
-  String: require('./String.js')
+  Constants: require('./Constants.js'),
+  Number: require('./Number.js'),
+  Random: require('./Random.js'),
+  String: require('./String.js'),
+  Text: require('./Text.js')
 };

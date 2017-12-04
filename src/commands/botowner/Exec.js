@@ -21,13 +21,13 @@ class Exec extends Command {
     });
   }
 
-  run(msg, args) {
+  run(msg, args, text) {
     exec(args.command, (error, stdout, stderr) => {
       if (error || stderr) {
-        return msg.channel.send('```bat\n' + (error || stderr) + '```');
+        return text.sendError('```bat\n' + (error || stderr) + '```', false);
       }
 
-      return msg.channel.send('**Successfully Executed**```bat\n' + args.command + '```' + (utility.String.isNullOrWhiteSpace(stdout) ? '' : '**Output**' + (stdout.length > 2048 ? '\nOutput is too long to show.' : '```bat\n' + stdout.replace(process.env.USERNAME, 'USER') + '```')));
+      return text.send('**Successfully Executed**```bat\n' + args.command + '```' + (utility.String.isNullOrWhiteSpace(stdout) ? '' : '**Output**' + (stdout.length > 2048 ? '\nOutput is too long to show.' : '```bat\n' + stdout.replace(process.env.USERNAME, 'USER') + '```')));
     });
   }
 }

@@ -15,24 +15,44 @@ class Help extends Command {
           name: 'command',
           type: 'string',
           example: 'help',
+          defaultValue: '',
           remainder: true
         })
       ]
     });
   }
 
-  run(msg, args) {
+  run(msg, args, text) {
+    if (utility.String.isNullOrWhiteSpace(args.command)) {
+      const groups = msg.client.registry.groups;
+      let allCommands = 'Here\'s all of the commands available:\n';
+
+      for (let i = 0; i < groups.length; i++) {
+        const groupCommands = groups[i].commands;
+        allCommands += utility.String.boldify(utility.String.upperFirstChar(groups[i].name)) + ': ';
+
+        for (let k = 0; k < groupCommands.length; k++) {
+          allCommands += utility.String.upperFirstChar(groupCommands[k].names[0]) + ', '
+        }
+
+        allCommands = allCommands.substring(0, allCommands.length - 2);
+        allCommands += '\n';
+      }
+
+      return text.send(allCommands);
+    }
+
     const lowerInput = args.command.toLowerCase();
     const command = msg.client.registry.commands.find(c => c.names.includes(lowerInput));
 
     if (command === undefined) {
-      return msg.channel.send('This command doesn\'t exist.');
+      return text.sendError('This command doesn\'t exist.');
     }
 
     const aliases = utility.String.list(command.names.map(i => utility.String.upperFirstChar(i)), '`', '`');
-    let commandInfo = utility.String.upperFirstChar(command.names[0]) + ' - ' + utility.String.upperFirstChar(command.group.name) + (aliases.length === 1 ? '' : '\n**Aliases**: ' + aliases) + '\n**Description**: `' + command.description +  '`\n**Usage**: `' + credentials.prefix + command.getUsage() + '`\n**Example**: `' + credentials.prefix + command.getExample() + '`';
+    let commandInfo = (aliases.length === 1 ? '' : '\n**Aliases**: ' + aliases) + '\n**Description**: `' + command.description +  '`\n**Usage**: `' + credentials.prefix + command.getUsage() + '`\n**Example**: `' + credentials.prefix + command.getExample() + '`';
 
-    return msg.channel.send(commandInfo);
+    return text.send(commandInfo, { title: utility.String.upperFirstChar(command.names[0]) + ' - ' + utility.String.upperFirstChar(command.group.name) });
   }
 }
 

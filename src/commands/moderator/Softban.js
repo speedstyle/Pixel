@@ -1,4 +1,5 @@
 const { Command, Argument } = require('patron.js');
+const utility = require('../../utility');
 
 class Softban extends Command {
   constructor() {
@@ -34,15 +35,15 @@ class Softban extends Command {
     });
   }
 
-  async run(msg, args) {
-    if (args.user.bannable === false) {
-      return msg.channel.send('I cannot softban ' + args.user.tag + '.');
+  async run(msg, args, text) {
+    if (msg.guild.members.has(args.user.id) && msg.guild.members.get(args.user.id).bannable === false) {
+      return text.sendError('I cannot softban ' + utility.String.boldify(args.user.tag) + '.');
     }
 
     await msg.guild.ban(args.user, { reason: args.reason.length === 0 ? '' : args.reason, days: args.days });
     await msg.guild.unban(args.user);
 
-    return msg.channel.send('Successfully softbanned ' + args.user.tag + '.' + '\n**Messages Deleted**: ' + args.days + (args.reason.length === 0 ? '' : '\n**Reason**: ' + args.reason));
+    return text.send('Successfully softbanned ' + args.user.tag + '.' + '\n**Messages Deleted**: ' + args.days + (args.reason.length === 0 ? '' : '\n**Reason**: ' + args.reason));
   }
 }
 

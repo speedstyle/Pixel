@@ -20,7 +20,7 @@ class Eval extends Command {
     });
   }
 
-  async run(msg, args) {
+  async run(msg, args, text) {
     try {
       const client = msg.client;
       const member = msg.member;
@@ -39,9 +39,9 @@ class Eval extends Command {
 
       result = result.replace(msg.client.token, ' ');
 
-      return msg.channel.send('**Eval**:\n```js\n' + args.code + '```\n' + '**Returns**:\n```js\n' + result + '```');
+      return text.sendFields(['Eval', '```js\n' + args.code + '```', '**Returns**',  '```js\n' + result + '```']);
     } catch (err) {
-      return msg.channel.send('**Eval**:\n```js\n' + args.code + '```\n' + '**Error**:\n```js\n' + err + '```');
+      return text.sendFields(['Eval', '```js\n' + args.code + '```', '**Error**', '```js\n' + err + '```']);
     }
   }
 }

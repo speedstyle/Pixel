@@ -18,10 +18,10 @@ class Unban extends Command {
     });
   }
 
-  async run(msg, args) {
+  async run(msg, args, text) {
     await msg.guild.unban(args.user);
 
-    return msg.channel.send('Successfully unbanned ' + args.user.tag + '.');
+    return text.send('Successfully unbanned ' + args.user.tag + '.');
   }
 }
 
