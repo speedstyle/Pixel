@@ -1,4 +1,6 @@
 const { Command } = require('patron.js');
+const { RichEmbed } = require('discord.js');
+const utility = require('../../utility');
 
 class Ping extends Command {
   constructor() {
@@ -10,10 +12,15 @@ class Ping extends Command {
     });
   }
 
-  async run(msg) {
-    const sent = await msg.channel.send('Pinging...');
+  async run(msg, args, text) {
+    const sent = await text.send('Pinging...');
+    const embed = new RichEmbed()
+    .setColor(utility.Random.arrayElement(utility.Constants.embedColors.defaults))
+    .setTitle('Ping')
+    .setTimestamp()
+    .setDescription('**Heartbeat**: ' + Math.round(msg.client.ping) + ' ms.\n**Message Ping**: ' + Math.round(sent.createdTimestamp - msg.createdTimestamp) + ' ms.');
 
-    return sent.edit('**Ping**:\n**Heartbeat**: ' + Math.round(msg.client.ping) + ' ms.\n**Message**: ' + Math.round(sent.createdTimestamp - msg.createdTimestamp) + ' ms.');
+    return sent.edit({ embed });
   }
 }
 

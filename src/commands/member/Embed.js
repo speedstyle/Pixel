@@ -1,5 +1,4 @@
 const { Command, Argument } = require('patron.js');
-const { RichEmbed } = require('discord.js');
 
 class Embed extends Command {
   constructor() {
@@ -20,14 +19,16 @@ class Embed extends Command {
     });
   }
 
-  run(msg, args) {
-    const embed = new RichEmbed()
-      .setDescription(args.text)
-      .setAuthor(msg.author.username, msg.author.displayAvatarURL)
-      .setColor(0x00AE86)
-      .setTimestamp();
+  run(msg, args, text) {
+    const options = {
+      timestamp: true,
+      author: {
+        name: msg.author.username,
+        icon: msg.author.displayAvatarURL
+      }
+    };
 
-    return msg.channel.send({ embed });
+    return text.send(args.text, options)
   }
 }
 

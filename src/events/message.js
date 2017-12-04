@@ -3,13 +3,15 @@ const { DiscordAPIError } = require('discord.js');
 const client = require('../structures/Client.js');
 const credentials = require('../../credentials.json');
 const handler = new Handler(client.registry);
+const Text = require('../utility/Text.js');
 
 client.on('message', async msg => {
   if (msg.author.bot || msg.content.startsWith(credentials.prefix) === false) {
     return;
   }
 
-  const result = await handler.run(msg, credentials.prefix);
+  const text = new Text(msg);
+  const result = await handler.run(msg, credentials.prefix, text);
 
   if (result.success === false) {
     let message;
@@ -43,6 +45,6 @@ client.on('message', async msg => {
         break;
     }
 
-    return msg.channel.send(message);
+    return text.sendError(message);
   }
 });

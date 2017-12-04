@@ -10,8 +10,8 @@ class Reply extends Command {
     });
   }
 
-  run(msg) {
-    return msg.channel.send('Hi, I\'m awake!');
+  run(msg, args, text) {
+    return text.send('Hi, I\'m awake!');
   }
 }
 
