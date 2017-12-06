@@ -33,7 +33,7 @@ class Game extends Command {
         if(args.game.length > 128) {
             return text.sendError('I cannot set my game to that because it is over 128 characters.')
         }
-        client.user.setGame(args.game)
+        client.user.setGame(args.game, 'https://twitch.tv/lumitedubbz')
         return text.reply(`successfully set my game to ${args.game}! To change it again, type \`${credentials.prefix}game\``)
     }
 }
