@@ -19,3 +19,5 @@ Although you <em>can</em> DM me on Twitter, the best place to get support is in 
 # Indev
 
 This bot is in development! Some features may not work as expected or even at all. We are constantly updating the bot, so feature requests are always appreciated!
+
+Pixel
