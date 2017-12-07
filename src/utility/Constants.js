@@ -38,6 +38,10 @@ class Constants {
         [0, 255, 127]
       ]
     };
+
+    this.setgame = {
+      maxLength: 124
+    }
   }
 }
 
