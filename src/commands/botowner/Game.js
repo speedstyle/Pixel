@@ -1,5 +1,5 @@
 const { Command, Argument } = require('patron.js');
-const utility = require('../../utility')
+const utility = require('../../utility');
 
 class Game extends Command {
   constructor() {
