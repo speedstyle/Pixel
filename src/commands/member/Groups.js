@@ -4,7 +4,7 @@ const utility = require('../../utility');
 class Groups extends Command {
   constructor() {
     super({
-      names: ['groups', 'group', 'modules', 'categories'],
+      names: ['groups', 'group', 'modules', 'module', 'categories', 'category'],
       groupName: 'member',
       description: 'All of the current command groups',
       guildOnly: false,

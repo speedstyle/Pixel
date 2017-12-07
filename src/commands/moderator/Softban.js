@@ -13,6 +13,7 @@ class Softban extends Command {
           key: 'user',
           name: 'user',
           type: 'user',
+          preconditions: ['bannable'],
           example: 'Cock#1525'
         }),
         new Argument({
@@ -36,10 +37,6 @@ class Softban extends Command {
   }
 
   async run(msg, args, text) {
-    if (msg.guild.members.has(args.user.id) && msg.guild.members.get(args.user.id).bannable === false) {
-      return text.sendError('I cannot softban ' + utility.String.boldify(args.user.tag) + '.');
-    }
-
     await msg.guild.ban(args.user, { reason: args.reason.length === 0 ? '' : args.reason, days: args.days });
     await msg.guild.unban(args.user);
 

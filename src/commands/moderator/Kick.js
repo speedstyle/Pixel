@@ -13,6 +13,7 @@ class Kick extends Command {
           key: 'member',
           name: 'member',
           type: 'member',
+          preconditions: ['kickable'],
           example: 'Savannah'
         }),
         new Argument({
@@ -28,10 +29,6 @@ class Kick extends Command {
   }
 
   async run(msg, args, text) {
-    if (args.member.kickable === false) {
-      return text.sendError('I cannot kick ' + utility.String.boldify(args.member.user.tag) + '.');
-    }
-
     await args.member.kick(args.reason.length === 0 ? '' : args.reason);
 
     return text.send('Successfully kicked ' + args.member.user.tag + '.' + (args.reason.length === 0 ? '' : '\n**Reason**: ' + args.reason));
