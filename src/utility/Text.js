@@ -25,6 +25,10 @@ class Text {
     return this.constructor.createEmbed(this.msg.author, description, options);
   }
 
+  dmFields(fieldsAndValues, options) {
+    return this.constructor.sendFields(this.msg.author, fieldsAndValues, options);
+  }
+
   sendFields(fieldsAndValues, options) {
     return this.constructor.sendFields(this.msg.channel, fieldsAndValues, options);
   }
@@ -39,7 +43,7 @@ class Text {
 
     for (let i = 0; i < fieldsAndValues.length; i++) {
       if (Number.isEven(i)) {
-        embed.addField(fieldsAndValues[i], fieldsAndValues[i + 1], options.inline !== undefined ? options.inine : false);
+        embed.addField(fieldsAndValues[i], fieldsAndValues[i + 1], options.inline !== undefined ? options.inline : false);
       }
     }
 
