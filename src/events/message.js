@@ -34,8 +34,6 @@ client.on('message', async msg => {
           } else {
             message = result.errorReason;
           }
-        } else if (result.error.code === '22P02' || result.error.code === '22003') {
-            message = 'An error has occurred due to the use of excessively large numbers.';
         } else {
           message = result.errorReason;
 

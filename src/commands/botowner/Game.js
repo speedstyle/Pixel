@@ -14,7 +14,7 @@ class Game extends Command {
           name: 'game',
           type: 'string',
           example: 'with dank memes.',
-          preconditions: [{ name: 'characterlimit', options: { limit: utility.Constants.setgame.maxLength }}],
+          preconditions: [{ name: 'characterlimit', options: { limit: utility.Constants.setgame.maxLength } }],
           remainder: true
         })
       ]
