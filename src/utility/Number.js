@@ -12,6 +12,10 @@ class Number {
       days: parseInt(input / (1000 * 60 * 60 * 24))
     };
   }
+
+  hoursToMs(input) {
+    return input * 3600000;
+  }
 }
 
 module.exports = new Number();

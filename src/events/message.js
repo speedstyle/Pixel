@@ -1,17 +1,20 @@
 const { Handler, CommandError } = require('patron.js');
 const { DiscordAPIError } = require('discord.js');
 const client = require('../structures/Client.js');
-const credentials = require('../../credentials.json');
 const handler = new Handler(client.registry);
 const Text = require('../utility/Text.js');
 
 client.on('message', async msg => {
-  if (msg.author.bot || msg.content.startsWith(credentials.prefix) === false) {
+  if (msg.author.bot || msg.content.startsWith(client.config.prefix) === false) {
     return;
   }
 
+  if (msg.guild !== null) {
+    msg.dbGuild = await client.db.guildRepo.getGuild(msg.guild.id);
+  }
+
   const text = new Text(msg);
-  const result = await handler.run(msg, credentials.prefix, text);
+  const result = await handler.run(msg, client.config.prefix, text);
 
   if (result.success === false) {
     let message;
@@ -40,7 +43,7 @@ client.on('message', async msg => {
         }
         break;
       case CommandError.InvalidArgCount:
-        message = 'You\'re incorrectly using this command.\n**Usage:** `' + credentials.prefix + result.command.getUsage() + '`\n**Example:** `' + credentials.prefix + result.command.getExample() + '`';
+        message = 'You\'re incorrectly using this command.\n**Usage:** `' + client.config.prefix + result.command.getUsage() + '`\n**Example:** `' + client.config.prefix + result.command.getExample() + '`';
         break;
       default:
         message = result.errorReason;

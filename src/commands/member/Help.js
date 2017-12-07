@@ -32,7 +32,7 @@ class Help extends Command {
         allCommands += utility.String.boldify(utility.String.upperFirstChar(groups[i].name)) + ': ';
 
         for (let k = 0; k < groupCommands.length; k++) {
-          allCommands += utility.String.upperFirstChar(groupCommands[k].names[0]) + ', '
+          allCommands += utility.String.upperFirstChar(groupCommands[k].names[0]) + ', ';
         }
 
         allCommands = allCommands.substring(0, allCommands.length - 2);

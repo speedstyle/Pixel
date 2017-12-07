@@ -23,6 +23,7 @@ class Eval extends Command {
   async run(msg, args, text) {
     try {
       const client = msg.client;
+      const db = client.db;
       const member = msg.member;
       const guild = msg.guild;
       const author = msg.author;

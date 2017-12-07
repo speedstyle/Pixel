@@ -10,8 +10,9 @@ class Bannable extends ArgumentPrecondition {
 
   run(cmd, msg, arg, args, value, options) {
     const userTag = value.tag !== undefined ? value.tag : value.user.tag;
+    const member = value.bannable !== undefined ? value : msg.guild.member(value.id);
 
-    if (value.bannable === false) {
+    if (member.bannable === false) {
       return PreconditionResult.fromError(cmd, utility.String.boldify(userTag) + ' is not bannable.');
     }
 
