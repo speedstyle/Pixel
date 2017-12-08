@@ -5,7 +5,7 @@ class Poll extends patron.Command {
   constructor() {
     super({
       names: ['poll', 'findpoll'],
-      groupName: 'moderator',
+      groupName: 'member',
       description: 'Finds a poll.',
       args: [
         new patron.Argument({
