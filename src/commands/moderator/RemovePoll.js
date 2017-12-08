@@ -5,7 +5,7 @@ class RemovePoll extends patron.Command {
   constructor() {
     super({
       names: ['removepoll'],
-      groupName: 'polls',
+      groupName: 'moderator',
       description: 'Destroy your poll.',
       args: [
         new patron.Argument({
