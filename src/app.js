@@ -5,7 +5,9 @@ const registry = require('./structures/Registry.js');
 
 client.registry = registry;
 RequireAll(join(__dirname, 'events'));
+RequireAll(join(__dirname, 'intervals'));
 
+client.db.init(client.config.mongoConnectionURL);
 client.init();
 
 process.on('unhandledRejection', err => {

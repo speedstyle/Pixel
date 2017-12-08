@@ -40,8 +40,8 @@ class Constants {
     };
 
     this.setgame = {
-      maxLength: 124
-    }
+      maxLength: 128
+    };
   }
 }
 

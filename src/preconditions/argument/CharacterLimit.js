@@ -1,6 +1,6 @@
-const patron = require('patron.js');
+const { ArgumentPrecondition, PreconditionResult } = require('patron.js');
 
-class CharacterLimit extends patron.ArgumentPrecondition {
+class CharacterLimit extends ArgumentPrecondition {
   constructor() {
     super({
       name: 'characterlimit'
@@ -9,10 +9,10 @@ class CharacterLimit extends patron.ArgumentPrecondition {
 
   async run(command, msg, argument, args, value, options) {
     if (value.length <= options.limit) {
-      return patron.PreconditionResult.fromSuccess();
+      return PreconditionResult.fromSuccess();
     }
 
-    return patron.PreconditionResult.fromError(command, 'The ' + argument.name + ' may not be longer than ' + options.limit + ' characters.');
+    return PreconditionResult.fromError(command, 'The ' + argument.name + ' may not be longer than ' + options.limit + ' characters.');
   }
 }
 

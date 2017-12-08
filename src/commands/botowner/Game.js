@@ -1,6 +1,5 @@
 const { Command, Argument } = require('patron.js');
-const credentials = require('../../../credentials.json');
-const utility = require('../../utility/');
+const utility = require('../../utility');
 
 class Game extends Command {
   constructor() {
@@ -14,7 +13,7 @@ class Game extends Command {
           key: 'game',
           name: 'game',
           type: 'string',
-          example: 'with dank memes',
+          example: 'with dank memes.',
           preconditions: [{ name: 'characterlimit', options: { limit: utility.Constants.setgame.maxLength } }],
           remainder: true
         })
@@ -23,8 +22,9 @@ class Game extends Command {
   }
 
   async run(msg, args, text) {
-    await msg.client.user.setGame(args.game, 'https://twitch.tv/lumitedubbz');
-    return text.reply('Successfully set game to ' + args.game + ' to change it again, type `' + credentials.prefix + 'game`.');
+    await msg.client.user.setGame(args.game);
+
+    return text.reply('successfully set my game to ' + args.game + '! To change it again, type ' + msg.client.config.prefix + 'game command.');
   }
 }
 
