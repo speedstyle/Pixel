@@ -9,7 +9,6 @@ Visit the <a href="https://github.com/LumiteDubbz/Pixel/wiki">Wiki</a> to learn 
 <a href="https://github.com/assley">Assley</a><br>
 Daf: <a href="https://github.com/dafscode">(@DafsCode)</a> Daf quit developing Pixel, but credit to him for some commands. He is also the hosting manager, so if the bot is offline, ping him!<br>
 <a href="https://github.com/Marathxnz">Luner:</a> Did a bunch of fixes and code cleans via a PR.<br>
-<a href="https://github.com/vim2meta">John/vim2meta:</a> Lowkey used an old branch of DEA for everything related to mongodb.<br>
 
 # Support
 
