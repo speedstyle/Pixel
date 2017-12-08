@@ -4,7 +4,7 @@ class Polls extends patron.Command {
   constructor() {
     super({
       names: ['polls'],
-      groupName: 'polls',
+      groupName: 'member',
       description: 'Finds all polls in server.'
     });
   }
