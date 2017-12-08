@@ -27,9 +27,9 @@ client.setInterval(async () => {
     let choices = '';
 
     for (const key in polls[i].choices) {
-      choices += key + ': ' + ' Votes: ' + polls[i].choices[key] + ',\n';
+      choices += '`' + key + '` Votes: ' + polls[i].choices[key] + ', ';
     }
 
-    await creator.user.tryDM(choices + 'Final Poll Results Of `' + polls[i].name + '` Poll In Server `' + guild.name + '`.');
+    await creator.user.tryDM(choices.substring(0, choices.length - 2) + 'Final Poll Results Of `' + polls[i].name + '` Poll In Server `' + guild.name + '`.');
   }
 }, utility.Constants.intervals.autoRemovePoll);
