@@ -6,6 +6,7 @@ registry.registerArgumentPreconditions(RequireAll(join(__dirname, '/../precondit
 registry.registerPreconditions(RequireAll(join(__dirname, '/../preconditions/command')));
 registry.registerGlobalTypeReaders();
 registry.registerLibraryTypeReaders();
+registry.registerTypeReaders(RequireAll(join(__dirname, '../readers')));
 registry.registerGroups(RequireAll(join(__dirname, '/../groups')));
 registry.registerCommands(RequireAll(join(__dirname, '/../commands')));
 

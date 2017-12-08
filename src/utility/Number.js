@@ -3,6 +3,10 @@ class Number {
     return input % 2 === 0;
   }
 
+  daysToMs(input) {
+    return input * 86400000;
+  }  
+
   msToTime(input) {
     return {
       milliseconds: parseInt((input % 1000) / 100),

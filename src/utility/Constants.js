@@ -39,6 +39,13 @@ class Constants {
       ]
     };
 
+    this.polls = {
+      elderTimeRequired: 172800000,
+      maxAnswers: 6,
+      maxAnswerChar: 20,
+      maxChar: 40      
+    };
+
     this.setgame = {
       maxLength: 128
     };
