@@ -5,7 +5,7 @@ class Vote extends patron.Command {
   constructor() {
     super({
       names: ['vote'],
-      groupName: 'polls',
+      groupName: 'member',
       description: 'Vote on a poll.',
       args: [
         new patron.Argument({
