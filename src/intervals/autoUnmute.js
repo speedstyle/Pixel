@@ -1,3 +1,4 @@
+const utility = require('../utility/');
 const client = require('../structures/Client.js');
 const db = client.db;
 
@@ -36,4 +37,4 @@ client.setInterval(async () => {
 
     await member.removeRole(role);
   }
-}, 30000);
+}, utility.Constants.intervals.autoUnmute);
