@@ -33,6 +33,10 @@ class Text {
     return this.constructor.sendFields(this.msg.channel, fieldsAndValues, options);
   }
 
+  static sendEmbed(channel, embed) {
+    return channel.send({ embed });
+  }
+
   static sendFields(channel, fieldsAndValues, options = {}) {
     if (Number.isEven(fieldsAndValues.length) === false) {
       throw new TypeError('The values length must be even.');
