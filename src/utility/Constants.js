@@ -39,11 +39,16 @@ class Constants {
       ]
     };
 
+    this.intervals = {
+      autoUnmute: 30000,
+      autoRemovePoll: 30000
+    };
+
     this.polls = {
       elderTimeRequired: 172800000,
       maxAnswers: 6,
       maxAnswerChar: 20,
-      maxChar: 40      
+      maxChar: 40
     };
 
     this.setgame = {
