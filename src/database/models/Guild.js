@@ -4,6 +4,12 @@ class Guild {
     this.roles = {
       muted: null
     };
+    this.channels = {
+      modLog: null
+    };
+    this.misc = {
+      caseNumber: 1
+    };
   }
 }
 
