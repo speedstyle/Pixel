@@ -1,5 +1,6 @@
 const { Command, Argument } = require('patron.js');
 const util = require('../../utility');
+const ModerationService = require('../../services/ModerationService')
 
 class Mute extends Command {
   constructor() {
@@ -51,7 +52,7 @@ class Mute extends Command {
 
     await args.member.addRole(role);
     await text.send('You have successfully muted ' + args.member.user.tag + ' for ' + formattedHours + '.');
-
+    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Mute', util.Constants.embedColors.mute, args.reason, msg.author, args.member.user, 'Length', formattedHours);
     return msg.client.db.muteRepo.insertMute(args.member.id, msg.guild.id, util.Number.hoursToMs(args.hours));
   }
 }

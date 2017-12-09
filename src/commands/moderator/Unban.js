@@ -20,7 +20,7 @@ class Unban extends Command {
 
   async run(msg, args, text) {
     await msg.guild.unban(args.user);
-
+    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Un-ban', util.Constants.embedColors.unban, args.reason, msg.author, args.member.user);
     return text.send('Successfully unbanned ' + args.user.tag + '.');
   }
 }

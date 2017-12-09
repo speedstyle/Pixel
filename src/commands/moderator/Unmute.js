@@ -1,4 +1,7 @@
 const { Command, Argument } = require('patron.js');
+const ModerationService = require('../../services/ModerationService');
+const util = require('../../utility');
+const Constants = require('../../utility/Constants');
 
 class Unmute extends Command {
   constructor() {
@@ -40,7 +43,7 @@ class Unmute extends Command {
     }
 
     await args.member.removeRole(role);
-
+    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Un-mute', util.Constants.embedColors.unmute, args.reason, msg.author, args.member.user);
     return text.send('You have successfully unmuted ' + args.member.user.tag + '.');
   }
 }
