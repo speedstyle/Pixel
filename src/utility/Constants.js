@@ -41,12 +41,19 @@ class Constants {
       unban: [19, 255, 25],
       unmute: [109, 237, 94],
       kick: [255, 160, 36],
+      clear: [0, 29, 255],
       ban: [255, 0, 0]
     };
+
+    this.defaultPrefix = 'p!';
 
     this.intervals = {
       autoUnmute: 30000,
       autoRemovePoll: 30000
+    };
+
+    this.guildSettings = {
+      prefixLength: 5
     };
 
     this.polls = {

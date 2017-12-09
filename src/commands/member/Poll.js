@@ -21,7 +21,7 @@ class Poll extends patron.Command {
 
   async run(msg, args, text) {
     let creator = '';
-    let choices = '';
+    let choices = '```';
     const timeLeft = utility.Number.msToTime((args.poll.length - (Date.now() - args.poll.createdAt)));
 
     if (args.poll.creatorId !== null && args.poll.creatorId !== undefined) {
@@ -31,11 +31,13 @@ class Poll extends patron.Command {
       creator = 'Nobody';
     }
 
+    let position = '1';
+
     for (const key in args.poll.choices) {
-      choices += key + ': ' + args.poll.choices[key] + ',\n';
+      choices += (position++) + '. ' + key + ': ' + args.poll.choices[key] + ',\n';
     }
 
-    return text.send('**Index:** ' + args.poll.index + '\n**Creator:** ' + creator + '\n**Answers:** \n' + choices.substring(0, choices.length - 2) + '\n**Ending:** Days: ' + timeLeft.days + ', Hours: ' + timeLeft.hours + ', Minutes: ' + timeLeft.minutes + ', Seconds: ' + timeLeft.seconds + '\n**Elder Only:** ' + (args.poll.elderOnly === true ? 'Yes' : 'No') + '\n**Mod Only:** ' + (args.poll.modOnly === true ? 'Yes' : 'No'), { title: args.poll.name });
+    return text.send('**Index:** ' + args.poll.index + '\n**Creator:** ' + creator + '\n**Answers:** \n' + choices.substring(0, choices.length - 2) + '```' + '\n**Ending:** Days: ' + timeLeft.days + ', Hours: ' + timeLeft.hours + ', Minutes: ' + timeLeft.minutes + ', Seconds: ' + timeLeft.seconds, { title: args.poll.name, footer: { text: (args.poll.elderOnly === true && args.poll.modOnly !== true ? 'Elder Only' : '') + (args.poll.modOnly === true && args.poll.elderOnly !== true ? 'Mod Only' : '') + (args.poll.modOnly === true && args.poll.elderOnly === true ? 'Elder Only, & Mod Only' : '') } });
   }
 }
 

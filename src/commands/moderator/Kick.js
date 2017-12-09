@@ -16,7 +16,7 @@ class Kick extends Command {
           key: 'member',
           name: 'member',
           type: 'member',
-          preconditions: ['kickable'],
+          preconditions: ['kickable', 'nomoderator'],
           example: 'Savannah'
         }),
         new Argument({
@@ -32,7 +32,8 @@ class Kick extends Command {
   }
 
   async run(msg, args, text) {
-    await args.member.kick(args.reason.length === 0 ? '' : args.reason);
+    await args.member.kick(args.reason);
+    await ModerationService.tryInformUser(msg.guild, msg.author, 'kicked', args.member.user, args.reason);
     await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Kick', util.Constants.embedColors.kick, args.reason, msg.author, args.member.user);
     return text.send('Successfully kicked ' + args.member.user.tag + '.' + (args.reason.length === 0 ? '' : '\n**Reason**: ' + args.reason));
   }

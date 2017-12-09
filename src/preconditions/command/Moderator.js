@@ -1,4 +1,5 @@
 const { Precondition, PreconditionResult } = require('patron.js');
+const ModerationService = require('../../services/ModerationService.js');
 
 class Moderator extends Precondition {
   constructor() {
@@ -8,11 +9,11 @@ class Moderator extends Precondition {
   }
 
   run(cmd, msg) {
-    if (msg.member.hasPermission('ADMINISTRATOR')) {
+    if (ModerationService.getPermLevel(msg.dbGuild, msg.guild.member(msg.author)) >= 1) {
       return PreconditionResult.fromSuccess();
     }
 
-    return PreconditionResult.fromError(cmd, 'You must have the Administrator permission in order to use this command.');
+    return PreconditionResult.fromError(cmd, 'You must be a moderator in order to use this command.');
   }
 }
 
