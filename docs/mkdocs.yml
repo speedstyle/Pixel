@@ -1,0 +1,7 @@
+site_name: DEA Discord Bot 2
+repo_url: https://github.com/Marathxnz/DEA2-Better
+pages:
+    - Home: index.md
+    - Setup: setup.md
+    - Commands: commands.md
+theme: readthedocs
