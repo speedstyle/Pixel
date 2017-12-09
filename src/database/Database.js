@@ -12,6 +12,11 @@ class Database {
       Poll: require('./queries/PollQuery.js')
     };
 
+    this.updates = {
+      Pull: require('./updates/PullUpdate.js'),
+      Push: require('./updates/PushUpdate.js')
+    };
+
     this.models = {
       Guild: require('./models/Guild.js'),
       Mute: require('./models/Mute.js'),

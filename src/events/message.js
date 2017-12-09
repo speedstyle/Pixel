@@ -5,16 +5,25 @@ const handler = new Handler(client.registry);
 const Text = require('../utility/Text.js');
 
 client.on('message', async msg => {
-  if (msg.author.bot || msg.content.startsWith(client.config.prefix) === false) {
+  if (msg.author.bot) {
     return;
   }
 
+  let prefix = '';
+
   if (msg.guild !== null) {
     msg.dbGuild = await client.db.guildRepo.getGuild(msg.guild.id);
+    prefix = msg.dbGuild.settings.prefix;
+  } else {
+    prefix = 'p!';
+  }
+
+  if (!msg.content.startsWith(prefix)) {
+    return;
   }
 
   const text = new Text(msg);
-  const result = await handler.run(msg, client.config.prefix, text);
+  const result = await handler.run(msg, prefix, text);
 
   if (result.success === false) {
     let message;
@@ -41,7 +50,7 @@ client.on('message', async msg => {
         }
         break;
       case CommandError.InvalidArgCount:
-        message = 'You\'re incorrectly using this command.\n**Usage:** `' + client.config.prefix + result.command.getUsage() + '`\n**Example:** `' + client.config.prefix + result.command.getExample() + '`';
+        message = 'You\'re incorrectly using this command.\n**Usage:** `' + prefix + result.command.getUsage() + '`\n**Example:** `' + prefix + result.command.getExample() + '`';
         break;
       default:
         message = result.errorReason;

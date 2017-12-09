@@ -14,6 +14,7 @@ class Mute extends Command {
           name: 'member',
           key: 'member',
           type: 'member',
+          preconditions: ['nomoderator'],
           example: '"Jack Kannoff#0711"'
         }),
         new Argument({
@@ -52,6 +53,7 @@ class Mute extends Command {
 
     await args.member.addRole(role);
     await text.send('You have successfully muted ' + args.member.user.tag + ' for ' + formattedHours + '.');
+    await ModerationService.tryInformUser(msg.guild, msg.author, 'muted', args.member.user, args.reason);
     await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Mute', util.Constants.embedColors.mute, args.reason, msg.author, args.member.user, 'Length', formattedHours);
     return msg.client.db.muteRepo.insertMute(args.member.id, msg.guild.id, util.Number.hoursToMs(args.hours));
   }

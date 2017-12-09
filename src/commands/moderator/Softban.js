@@ -16,7 +16,7 @@ class Softban extends Command {
           key: 'user',
           name: 'user',
           type: 'user',
-          preconditions: ['bannable'],
+          preconditions: ['bannable', 'nomoderator'],
           example: 'Cock#1525'
         }),
         new Argument({
@@ -42,8 +42,9 @@ class Softban extends Command {
   async run(msg, args, text) {
     await msg.guild.ban(args.user, { reason: args.reason.length === 0 ? '' : args.reason, days: args.days });
     await msg.guild.unban(args.user);
-    const formattedHours = args.days + ' day' + (args.days === 1 ? '' : 's');    
-    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Soft-ban', util.Constants.embedColors.mute, args.reason, msg.author, args.member.user, 'Number of days', formattedHours);
+    const formattedHours = args.days + ' day' + (args.days === 1 ? '' : 's');
+    await ModerationService.tryInformUser(msg.guild, msg.author, 'soft-banned', args.member.user, args.reason);
+    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Soft-ban', util.Constants.embedColors.ban, args.reason, msg.author, args.member.user, 'Number of days', formattedHours);
     return text.send('Successfully softbanned ' + args.user.tag + '.' + '\n**Messages Deleted**: ' + args.days + (args.reason.length === 0 ? '' : '\n**Reason**: ' + args.reason));
   }
 }

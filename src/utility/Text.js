@@ -25,16 +25,16 @@ class Text {
     return this.constructor.createEmbed(this.msg.author, description, options);
   }
 
+  tryDM(user, description, options) {
+    return this.constructor.createEmbed(user, description, options);
+  }
+
   dmFields(fieldsAndValues, options) {
     return this.constructor.sendFields(this.msg.author, fieldsAndValues, options);
   }
 
   sendFields(fieldsAndValues, options) {
     return this.constructor.sendFields(this.msg.channel, fieldsAndValues, options);
-  }
-
-  static sendEmbed(channel, embed) {
-    return channel.send({ embed });
   }
 
   static sendFields(channel, fieldsAndValues, options = {}) {

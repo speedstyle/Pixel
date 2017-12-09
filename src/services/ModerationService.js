@@ -21,7 +21,7 @@ class ModerationService {
       }
     }
 
-    return member.hasPermission('ADMINISTRATOR');
+    return member.hasPermission('ADMINISTRATOR') === true && permLevel < 2 ? 2 : permLevel;
   }
 
   tryInformUser(guild, author, action, user, reason = '') {

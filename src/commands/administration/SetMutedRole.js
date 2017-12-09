@@ -1,14 +1,14 @@
-const { Command, Argument} = require('patron.js');
+const patron = require('patron.js');
 
-class SetMutedRole extends Command {
+class SetMutedRole extends patron.Command {
   constructor() {
     super({
       names: ['setmutedrole', 'setmuterole', 'setmute', 'setmuted'],
-      groupName: 'moderator',
+      groupName: 'administration',
       description: 'Sets the muted role.',
       botPermissions: ['MANAGE_ROLES'],
       args: [
-        new Argument({
+        new patron.Argument({
           name: 'role',
           key: 'role',
           type: 'role',
@@ -23,7 +23,7 @@ class SetMutedRole extends Command {
   async run(msg, args, text) {
     await msg.client.db.guildRepo.upsertGuild(msg.guild.id, { $set: { 'roles.muted': args.role.id } });
 
-    return text.send('You have successfully set the muted role to ' + args.role + '.');
+    return text.reply('You have successfully set the muted role to ' + args.role + '.');
   }
 }
 
