@@ -54,7 +54,7 @@ class CreatePoll extends patron.Command {
 
     if (poll !== null) {
       return text.sendError('There\'s already a poll with this name.');
-    } else if (args.modsOnly === true && msg.member.hasPermission('ADMINISTRATOR') === false) {
+    } else if (args.modsOnly === true && ModerationService.getPermLevel(msg.dbGuild, msg.guild.member(msg.author)) === 0) {
       return text.sendError('Only moderator\'s may create moderator only polls.');
     } else if (choices.length > utility.Constants.polls.maxAnswers) {
       return text.sendError('You may not have more than ' + utility.Constants.polls.maxAnswers + ' answers on your poll.');
