@@ -29,7 +29,7 @@ class Vote extends patron.Command {
     const elderDays = utility.Number.msToTime(utility.Constants.polls.elderTimeRequired).days;
     if (args.poll.elderOnly === true && msg.member.joinedAt - Date.now() > utility.Constants.polls.elderTimeRequired) {
       return text.sendError('You may not vote on this poll until you\'ve been in this server for ' + elderDays + ' days.');
-    } else if (args.poll.modOnly === true && msg.member.hasPermission('ADMINISTRATOR') === false) {
+    } else if (args.poll.modOnly === true && ModerationService.getPermLevel(msg.dbGuild, msg.guild.member(msg.author)) === 0) {
       return text.sendError('You may only vote on this poll if you\'re a moderator.');
     } else if (args.poll.voters.includes(msg.author.id)) {
       return text.sendError('You\'ve already voted on this poll.');
