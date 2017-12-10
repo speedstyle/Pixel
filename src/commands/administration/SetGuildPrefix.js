@@ -1,14 +1,14 @@
-const patron = require('patron.js');
+const { Command, Argument } = require('patron.js');
 const utility = require('../../utility/');
 
-class SetGuildPrefix extends patron.Command {
+class SetGuildPrefix extends Command {
   constructor() {
     super({
       names: ['setprefix', 'setguildpefix', 'setguildsprefix'],
       groupName: 'administration',
       description: 'Sets the guild\'s prefix.',
       args: [
-        new patron.Argument({
+        new Argument({
           name: 'prefix',
           key: 'prefix',
           type: 'string',

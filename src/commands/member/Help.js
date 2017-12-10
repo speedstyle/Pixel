@@ -1,6 +1,5 @@
 const { Command, Argument } = require('patron.js');
 const utility = require('../../utility');
-const credentials = require('../../../credentials.json');
 
 class Help extends Command {
   constructor() {
@@ -50,7 +49,7 @@ class Help extends Command {
     }
 
     const aliases = utility.String.list(command.names.map(i => utility.String.upperFirstChar(i)), '`', '`');
-    let commandInfo = (aliases.length === 1 ? '' : '\n**Aliases**: ' + aliases) + '\n**Description**: `' + command.description +  '`\n**Usage**: `' + credentials.prefix + command.getUsage() + '`\n**Example**: `' + credentials.prefix + command.getExample() + '`';
+    let commandInfo = (aliases.length === 1 ? '' : '\n**Aliases**: ' + aliases) + '\n**Description**: `' + command.description +  '`\n**Usage**: `' + msg.dbGuild.settings.prefix + command.getUsage() + '`\n**Example**: `' + msg.dbGuild.settings.prefix + command.getExample() + '`';
 
     return text.send(commandInfo, { title: utility.String.upperFirstChar(command.names[0]) + ' - ' + utility.String.upperFirstChar(command.group.name) });
   }

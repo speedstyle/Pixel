@@ -1,14 +1,14 @@
-const patron = require('patron.js');
+const { Command, Argument } = require('patron.js');
 const utility = require('../../utility/');
 
-class Poll extends patron.Command {
+class Poll extends Command {
   constructor() {
     super({
       names: ['poll', 'findpoll'],
       groupName: 'member',
       description: 'Finds a poll.',
       args: [
-        new patron.Argument({
+        new Argument({
           name: 'poll',
           key: 'poll',
           type: 'poll',

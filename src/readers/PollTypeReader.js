@@ -1,6 +1,6 @@
-const patron = require('patron.js');
+const { TypeReader, TypeReaderResult } = require('patron.js');
 
-class PollTypeReader extends patron.TypeReader {
+class PollTypeReader extends TypeReader {
   constructor() {
     super({ type: 'poll' });
   }
@@ -9,10 +9,10 @@ class PollTypeReader extends patron.TypeReader {
     const poll = await message.client.db.pollRepo.findOne({ guildId: message.guild.id, index: Number.parseFloat(input) });
 
     if (poll !== null) {
-      return patron.TypeReaderResult.fromSuccess(poll);
+      return TypeReaderResult.fromSuccess(poll);
     }
 
-    return patron.TypeReaderResult.fromError(command, 'This poll doesn\'t exist.');
+    return TypeReaderResult.fromError(command, 'This poll doesn\'t exist.');
   }
 }
 

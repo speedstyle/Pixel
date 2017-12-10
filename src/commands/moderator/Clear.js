@@ -1,8 +1,8 @@
-const patron = require('patron.js');
+const { Command, Argument } = require('patron.js');
 const utility = require('../../utility');
 const ModerationService = require('../../services/ModerationService.js');
 
-class Clear extends patron.Command {
+class Clear extends Command {
   constructor() {
     super({
       names: ['clear', 'prune', 'purge'],
@@ -11,20 +11,20 @@ class Clear extends patron.Command {
       cooldown: 1000,
       botPermissions: ['MANAGE_MESSAGES'],
       args: [
-        new patron.Argument({
+        new Argument({
           name: 'quantity',
           key: 'quantity',
           type: 'float',
           example: '5'
         }),
-        new patron.Argument({
+        new Argument({
           name: 'reason',
           key: 'reason',
           type: 'string',
           example: 'one of the apples was spamming like an orange.',
           defaultValue: ''
         }),
-        new patron.Argument({
+        new Argument({
           name: 'member',
           key: 'member',
           type: 'member',

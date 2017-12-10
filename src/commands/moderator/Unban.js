@@ -1,4 +1,6 @@
 const { Command, Argument } = require('patron.js');
+const ModerationService = require('../../services/ModerationService.js');
+const Constants = require('../../utility/Constants.js');
 
 class Unban extends Command {
   constructor() {
@@ -20,7 +22,7 @@ class Unban extends Command {
 
   async run(msg, args, text) {
     await msg.guild.unban(args.user);
-    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Un-ban', util.Constants.embedColors.unban, args.reason, msg.author, args.member.user);
+    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Un-ban', Constants.embedColors.unban, args.reason, msg.author, args.user);
     return text.send('Successfully unbanned ' + args.user.tag + '.');
   }
 }

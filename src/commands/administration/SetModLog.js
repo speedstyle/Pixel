@@ -1,13 +1,13 @@
-const patron = require('patron.js');
+const { Command, Argument } = require('patron.js');
 
-class SetModLog extends patron.Command {
+class SetModLog extends Command {
   constructor() {
     super({
       names: ['setmodlog', 'modlog', 'logs', 'setmodlog', 'setmodlogs', 'setlog', 'setlogs'],
       groupName: 'administration',
       description: 'Sets the mod log channel.',
       args: [
-        new patron.Argument({
+        new Argument({
           name: 'channel',
           key: 'channel',
           type: 'textchannel',

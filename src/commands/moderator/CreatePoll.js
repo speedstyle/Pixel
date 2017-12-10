@@ -1,41 +1,42 @@
-const patron = require('patron.js');
+const { Command, Argument } = require('patron.js');
+const ModerationService = require('../../services/ModerationService.js');
 const utility = require('../../utility/');
 
-class CreatePoll extends patron.Command {
+class CreatePoll extends Command {
   constructor() {
     super({
       names: ['createpoll', 'makepoll'],
       groupName: 'member',
       description: 'Create a poll.',
       args: [
-        new patron.Argument({
+        new Argument({
           name: 'poll name',
           key: 'name',
           type: 'string',
           example: 'is john gay',
           preconditions: [{ name: 'characterlimit', options: { limit: utility.Constants.polls.maxChar } }],
         }),
-        new patron.Argument({
+        new Argument({
           name: 'choices',
           key: 'choices',
           type: 'string',
           example: 'yes~no~maybe'
         }),
-        new patron.Argument({
+        new Argument({
           name: 'days to last',
           key: 'days',
           type: 'float',
           example: '4',
           defaultValue: 1
         }),
-        new patron.Argument({
+        new Argument({
           name: 'elder only',
           key: 'eldersOnly',
           type: 'bool',
           example: 'true',
           defaultValue: false
         }),
-        new patron.Argument({
+        new Argument({
           name: 'mods only',
           key: 'modsOnly',
           type: 'bool',
@@ -61,8 +62,8 @@ class CreatePoll extends patron.Command {
     }
 
     for (let i = 0; i < choices.length; i++) {
-      if (choices[i + 1] == choices[i]) {
-        return text.sendError('You may not have multiple choices that are identicle.');
+      if (choices[i + 1] === choices[i]) {
+        return text.sendError('You may not have multiple choices that are identical.');
       } else if (choices[i].length > utility.Constants.polls.maxAnswerChar) {
         return text.sendError('You may not have more than ' + utility.Constants.polls.maxAnswerChar + ' characters in your answer.');
       }

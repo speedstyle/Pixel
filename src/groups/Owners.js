@@ -1,6 +1,6 @@
-const patron = require('patron.js');
+const { Group } = require('patron.js');
 
-class Owners extends patron.Group {
+class Owners extends Group {
   constructor() {
     super({
       name: 'owners',

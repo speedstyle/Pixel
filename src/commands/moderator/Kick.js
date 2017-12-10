@@ -1,8 +1,6 @@
 const { Command, Argument } = require('patron.js');
-const utility = require('../../utility');
 const ModerationService = require('../../services/ModerationService');
-const util = require('../../utility');
-const Constants = require('../../utility/Constants');
+const Constants = require('../../utility/Constants.js');
 
 class Kick extends Command {
   constructor() {
@@ -32,9 +30,13 @@ class Kick extends Command {
   }
 
   async run(msg, args, text) {
+    if (msg.guild.members.has(args.member.id)) {
+      await ModerationService.tryInformUser(msg.guild, msg.author, 'kicked', args.member.user, args.reason);
+    }
+
     await args.member.kick(args.reason);
-    await ModerationService.tryInformUser(msg.guild, msg.author, 'kicked', args.member.user, args.reason);
-    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Kick', util.Constants.embedColors.kick, args.reason, msg.author, args.member.user);
+    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Kick', Constants.embedColors.kick, args.reason, msg.author, args.member.user);
+
     return text.send('Successfully kicked ' + args.member.user.tag + '.' + (args.reason.length === 0 ? '' : '\n**Reason**: ' + args.reason));
   }
 }

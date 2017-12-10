@@ -1,6 +1,5 @@
 const { Command, Argument } = require('patron.js');
 const ModerationService = require('../../services/ModerationService');
-const util = require('../../utility');
 const Constants = require('../../utility/Constants');
 
 class Unmute extends Command {
@@ -31,7 +30,7 @@ class Unmute extends Command {
 
   async run(msg, args, text) {
     if (msg.dbGuild.roles.muted === null) {
-      return text.sendError('You must set a muted role with the `' + msg.client.config.prefix + 'setmute @Role` command before you can unmute users.');
+      return text.sendError('You must set a muted role with the `' + msg.dbGuild.settings.prefix + 'setmute @Role` command before you can unmute users.');
     } else if (args.member.roles.has(msg.dbGuild.roles.muted) === false) {
       return text.sendError('This user is not muted.');
     }
@@ -44,7 +43,7 @@ class Unmute extends Command {
 
     await args.member.removeRole(role);
     await ModerationService.tryInformUser(msg.guild, msg.author, 'unmuted', args.member.user, args.reason);
-    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Un-mute', util.Constants.embedColors.unmute, args.reason, msg.author, args.member.user);
+    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Un-mute', Constants.embedColors.unmute, args.reason, msg.author, args.member.user);
     return text.send('You have successfully unmuted ' + args.member.user.tag + '.');
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "pixel",
-  "version": "1.0.0",
+  "version": "1.5.0",
   "description": "A free to use, open-source and powerful bot, written in Discord.js",
   "main": "src/app.js",
   "scripts": {
@@ -27,6 +27,7 @@
     "discord.js": "^11.2.1",
     "mongodb": "^3.0.0-rc0",
     "path": "^0.12.7",
-    "patron.js": "github:vim2meta/patron.js"
+    "patron.js": "github:vim2meta/patron.js",
+    "snekfetch": "^3.6.1"
   }
 }

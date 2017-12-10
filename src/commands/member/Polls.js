@@ -1,6 +1,6 @@
-const patron = require('patron.js');
+const { Command } = require('patron.js');
 
-class Polls extends patron.Command {
+class Polls extends Command {
   constructor() {
     super({
       names: ['polls'],

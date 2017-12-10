@@ -1,8 +1,6 @@
 const { Command, Argument } = require('patron.js');
-const utility = require('../../utility');
+const Constants = require('../../utility/Constants.js');
 const ModerationService = require('../../services/ModerationService');
-const util = require('../../utility');
-const Constants = require('../../utility/Constants');
 
 class Ban extends Command {
   constructor() {
@@ -37,7 +35,8 @@ class Ban extends Command {
     }
 
     await msg.guild.ban(args.user, args.reason);
-    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Ban', util.Constants.embedColors.ban, args.reason, msg.author, args.member.user);
+    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Ban', Constants.embedColors.ban, args.reason, msg.author, args.user);
+
     return text.send('Successfully banned ' + args.user.tag + '.' + (args.reason.length === 0 ? '' : '\n**Reason**: ' + args.reason));
   }
 }
