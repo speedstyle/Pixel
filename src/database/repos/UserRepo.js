@@ -39,14 +39,14 @@ class UserRepo extends BaseRepo {
     return this.findOneAndUpdate(new User(userId, guildId), update, true);
   }
 
-  async updateNeededXP(dbGuild, dbUser, member) {
-    const newDbUser = await this.findUserAndUpsert(member.id, dbGuild.guildId, new SetNewXpNeeded('xpNeeded', dbUser.xpNeeded));
+  async modifyXP(dbGuild, member, change) {
+    const newDbUser = await this.findUserAndUpsert(member.id, dbGuild.guildId, { $inc: { 'xp': change } });
 
     return newDbUser;
   }
 
-  async modifyXP(dbGuild, member, change) {
-    const newDbUser = await this.findUserAndUpsert(member.id, dbGuild.guildId, { $inc: { 'xp': change } });
+  async modifyLevel(dbGuild, member, change) {
+    const newDbUser = await this.findUserAndUpsert(member.id, dbGuild.guildId, { $inc: { 'level': change } });
 
     return newDbUser;
   }

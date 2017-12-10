@@ -4,7 +4,6 @@ class User {
     this.guildId = guildId;
     this.level = 1;
     this.xp = 0;
-    this.xpNeeded = 50;
   }
 }
 

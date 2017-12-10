@@ -72,8 +72,94 @@ class Constants {
     this.xp = {
       messageCooldown: 15000,
       minCharLength: 5,
-      xpPerMessage: 90
+      xpPerMessage: 3,
+      globalMessageCooldown: 60000,
+      globalMinCharLength: 10,
+      globalXpPerMessage: 1
     };
+
+    this.levels = [
+      {
+        'level': 1,
+        'xpRequired': 20
+      },
+      {
+        'level': 2,
+        'xpRequired': 60
+      },
+      {
+        'level': 3,
+        'xpRequired': 140
+      },
+      {
+        'level': 4,
+        'xpRequired': 190
+      },
+      {
+        'level': 5,
+        'xpRequired': 237
+      },
+      {
+        'level': 6,
+        'xpRequired': 291
+      },
+      {
+        'level': 7,
+        'xpRequired': 371
+      },
+      {
+        'level': 8,
+        'xpRequired': 452
+      },
+      {
+        'level': 9,
+        'xpRequired': 500
+      },
+      {
+        'level': 10,
+        'xpRequired': 571
+      },
+      {
+        'level': 11,
+        'xpRequired': 624
+      },
+      {
+        'level': 12,
+        'xpRequired': 691
+      },
+      {
+        'level': 13,
+        'xpRequired': 742
+      },
+      {
+        'level': 14,
+        'xpRequired': 783
+      },
+      {
+        'level': 15,
+        'xpRequired': 824
+      },
+      {
+        'level': 16,
+        'xpRequired': 853
+      },
+      {
+        'level': 17,
+        'xpRequired': 912
+      },
+      {
+        'level': 18,
+        'xpRequired': 984
+      },
+      {
+        'level': 19,
+        'xpRequired': 1114
+      },
+      {
+        'level': 20,
+        'xpRequired': 1432
+      },
+    ];    
   }
 }
 

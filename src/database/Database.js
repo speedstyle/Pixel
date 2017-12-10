@@ -3,6 +3,7 @@ const GuildRepo = require('./repos/GuildRepo.js');
 const MuteRepo = require('./repos/MuteRepo.js');
 const PollRepo = require('./repos/PollRepo.js');
 const UserRepo = require('./repos/UserRepo.js');
+const GlobalUserRepo = require('./repos/GlobalUserRepo.js');
 
 class Database {
   constructor() {
@@ -11,7 +12,8 @@ class Database {
       Id: require('./queries/IdQuery.js'),
       Mute: require('./queries/MuteQuery.js'),
       Poll: require('./queries/PollQuery.js'),
-      User: require('./queries/UserQuery.js')
+      User: require('./queries/UserQuery.js'),
+      GlobalUser: require('./queries/GlobalUserQuery.js')
     };
 
     this.updates = {
@@ -23,7 +25,8 @@ class Database {
       Guild: require('./models/Guild.js'),
       Mute: require('./models/Mute.js'),
       Poll: require('./models/Poll.js'),
-      User: require('./models/User.js')
+      User: require('./models/User.js'),
+      GlobalUser: require('./models/GlobalUser.js')
     };
   }
 
@@ -36,6 +39,7 @@ class Database {
     this.muteRepo = new MuteRepo(await db.createCollection('mutes'));
     this.pollRepo = new PollRepo(await db.createCollection('polls'));
     this.userRepo = new UserRepo(await db.createCollection('users'));
+    this.globalUserRepo = new GlobalUserRepo(await db.createCollection('globalusers'));
 
     await db.collection('guilds').createIndex('guildId', { unique: true });
   }
