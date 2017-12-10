@@ -64,6 +64,12 @@ class UserRepo extends BaseRepo {
   deleteUsers(guildId) {
     return this.deleteMany({ guildId: guildId });
   }
+
+  modifySkillPoints(dbGuild, member, change) {
+    const newDbUser = await this.findUserAndUpsert(member.id, dbGuild.guildId, { $inc: { 'skillPoints': change } });
+    
+    return newDbUser;
+  }
 }
 
 module.exports = UserRepo;
