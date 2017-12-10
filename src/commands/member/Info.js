@@ -20,7 +20,7 @@ class Info extends Command {
   }
 
   async run(msg, args, text) {
-    const dbUser = msg.author.id === args.member.id ? msg.dbUser : await db.userRepo.getUser(args.member.id, msg.guild.id);
+    const dbUser = msg.author.id === args.member.id ? msg.dbUser : await msg.client.db.userRepo.getUser(args.member.id, msg.guild.id);
     const sortedUsers = (await msg.client.db.userRepo.findMany({ guildId: msg.guild.id })).sort((a, b) => b.level - a.level);
     const neededXp = await XpService.getNeededXp(msg.dbUser);
 
