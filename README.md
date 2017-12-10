@@ -17,8 +17,13 @@ This can also be found on the <a href="https://github.com/LumiteDubbz/Pixel/wiki
 
 Although you <em>can</em> DM me on Twitter, the best place to get support is in the official Pixel Discord Server. Click <a href="https://discord.me/pixelsupport"><u>here</u></a> to join the <strong>Official Support Server</strong>.
 
-# Indev
+# Features
 
-This bot is in development! Some features may not work as expected or even at all. We are constantly updating the bot, so feature requests are always appreciated!
+Pixel is the definition of 'powerful'. Before now, a server may need multiple bots to function: Tatsumaki to "engage their members", Dyno for the ban hammer, BoobBot for NSFW, Mantaro for games and so on and so forth. Not anymore; Pixel is here, with its advanced moderation system that incorporates set permission levels for roles that you, as the owner of the guild can set yourself:<br><br>
+Permission Level 1. Moderators: Access to mute, kick, ban, softban, etc.<br>
+Permission Level 2. Administrators: Access to setwelcomemessage, disablewelcomemessage, setmodlog, setprefix, etc.<br>
+Permission Level 3. Guild Owners: Access to ALL commands, including addmodrole, modifymodrole and remove mod role.<br><br>
 
-Pixel
+Pixel also has poll commands for all to use, with sophisticated features such as moderator only, where only moderators can vote, or elders only, where members who have been in the guild for at least to days can vote.<br><br>
+
+Pixel now has a guild-specific XP system, where users can level up and use the leaderboards command to compete to be at the top. We're also working on a <em>global</em> XP system which will include the top ten members from ALL guilds that Pixel is in.
