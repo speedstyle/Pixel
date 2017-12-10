@@ -12,7 +12,7 @@ class GlobalUserRepo extends BaseRepo {
     const query = new GlobalUserQuery(userId);
     const fetchedUser = await this.findOne(query);
 
-    return fetchedUser !== null ? fetchedUser : this.findOneAndReplace(query, new GloablUser(userId));
+    return fetchedUser !== null ? fetchedUser : this.findOneAndReplace(query, new GlobalUser(userId));
   }
 
   updateUser(userId, update) {

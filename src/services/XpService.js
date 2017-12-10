@@ -1,4 +1,5 @@
 const utility = require('../utility');
+const levels = utility.Constants.levels;
 
 class XpService {
   constructor() {
@@ -30,7 +31,7 @@ class XpService {
     const globalLastMessage = this.messages.get(msg.author.id);
     const globalIsMessageCooldownOver = globalLastMessage === undefined || Date.now() - globalLastMessage > utility.Constants.xp.globalMessageCooldown;
     const globalIsLongEnough = msg.content.length >= utility.Constants.xp.globalMinCharLength;
-    const globalNeededXp = await this.getNeededXp(msg.dbUser);
+    const globalNeededXp = await this.getGlobalNeededXp(msg.globalDbUser);
 
     if (globalNeededXp === 'max level') {
       return;
@@ -38,7 +39,7 @@ class XpService {
 
     if (globalIsMessageCooldownOver && globalIsLongEnough) {
       this.messages.set(msg.author.id, Date.now());
-      if (msg.dbUser.xp + utility.Constants.xp.globalXpPerMessage > globalNeededXp) {
+      if (msg.globalDbUser.xp + utility.Constants.xp.globalXpPerMessage > globalNeededXp) {
         const newGlobalDbUser = await msg.client.db.globalUserRepo.levelUp(msg.member);
         await utility.Text.createEmbed(msg.channel, utility.String.boldify(msg.author.tag) + ', Congrats you\'ve ' + (newGlobalDbUser.level === 20 ? 'achieved the max global level we currently have' : 'advanced to level ' + newGlobalDbUser.level) + '!');
       }
@@ -48,7 +49,6 @@ class XpService {
   }
 
   async getNeededXp(dbUser) {
-    const levels = utility.Constants.levels;
     const newUserLevel = dbUser.level + 1;
 
     for (const key in levels) {
@@ -56,6 +56,21 @@ class XpService {
         const newLevel = levels[key];
         if (newLevel.level === newUserLevel) {
           return newLevel.xpRequired;
+        }
+      }
+    }
+
+    return 'max level';
+  }
+
+  async getGlobalNeededXp(globalDbUser) {
+    const newGlobalUserLevel = globalDbUser.level + 1;
+
+    for (const key in levels) {
+      if (levels.hasOwnProperty(key) === true) {
+        const newGlobalLevel = levels[key];
+        if (newGlobalLevel.level === newGlobalUserLevel) {
+          return newGlobalLevel.xpRequired;
         }
       }
     }

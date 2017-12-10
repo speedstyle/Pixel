@@ -16,6 +16,7 @@ client.on('message', async msg => {
   if (msg.guild !== null) {
     msg.dbGuild = await client.db.guildRepo.getGuild(msg.guild.id);
     msg.dbUser = await client.db.userRepo.getUser(msg.author.id, msg.guild.id);
+    msg.globalDbUser = await client.db.globalUserRepo.getUser(msg.author.id);
 
     prefix = msg.dbGuild.settings.prefix;
   } else {
@@ -23,7 +24,7 @@ client.on('message', async msg => {
   }
 
   if (!msg.content.startsWith(prefix)) {
-    return msg.guild !== null ? XpService.giveXp(msg) : null;
+    return msg.guild !== null ? XpService.giveXp(msg) & XpService.giveGlobalXp(msg) : null;
   }
 
   const text = new Text(msg);

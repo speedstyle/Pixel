@@ -1,4 +1,5 @@
 const { Command, Argument, ArgumentDefault } = require('patron.js');
+const XpService = require('../../services/XpService.js');
 
 class Info extends Command {
   constructor() {

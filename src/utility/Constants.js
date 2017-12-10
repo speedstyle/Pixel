@@ -73,7 +73,7 @@ class Constants {
       messageCooldown: 15000,
       minCharLength: 5,
       xpPerMessage: 3,
-      globalMessageCooldown: 60000,
+      globalMessageCooldown: 15000,
       globalMinCharLength: 10,
       globalXpPerMessage: 1
     };
