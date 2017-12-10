@@ -3,6 +3,7 @@ const { DiscordAPIError } = require('discord.js');
 const client = require('../structures/Client.js');
 const handler = new Handler(client.registry);
 const Text = require('../utility/Text.js');
+const XpService = require('../services/XpService.js');
 
 client.on('message', async msg => {
   if (msg.author.bot) {
@@ -13,13 +14,14 @@ client.on('message', async msg => {
 
   if (msg.guild !== null) {
     msg.dbGuild = await client.db.guildRepo.getGuild(msg.guild.id);
+    msg.dbUser = await client.db.userRepo.getUser(msg.author.id, msg.guild.id);
     prefix = msg.dbGuild.settings.prefix;
   } else {
     prefix = 'p!';
   }
 
   if (!msg.content.startsWith(prefix)) {
-    return;
+    return msg.guild !== null ? XpService.giveXp(msg) : null;
   }
 
   const text = new Text(msg);

@@ -47,6 +47,8 @@ class Constants {
 
     this.defaultPrefix = 'p!';
 
+    this.leaderboardCap = 10;
+
     this.intervals = {
       autoUnmute: 30000,
       autoRemovePoll: 30000
@@ -54,6 +56,12 @@ class Constants {
 
     this.guildSettings = {
       prefixLength: 5
+    };
+
+    this.xp = {
+      messageCooldown: 15000,
+      minCharLength: 5,
+      xpPerMessage: 90
     };
 
     this.polls = {

@@ -2,6 +2,7 @@ const { MongoClient } = require('mongodb');
 const GuildRepo = require('./repos/GuildRepo.js');
 const MuteRepo = require('./repos/MuteRepo.js');
 const PollRepo = require('./repos/PollRepo.js');
+const UserRepo = require('./repos/UserRepo.js');
 
 class Database {
   constructor() {
@@ -9,7 +10,8 @@ class Database {
       Guild: require('./queries/GuildQuery.js'),
       Id: require('./queries/IdQuery.js'),
       Mute: require('./queries/MuteQuery.js'),
-      Poll: require('./queries/PollQuery.js')
+      Poll: require('./queries/PollQuery.js'),
+      User: require('./queries/UserQuery.js')
     };
 
     this.updates = {
@@ -20,7 +22,8 @@ class Database {
     this.models = {
       Guild: require('./models/Guild.js'),
       Mute: require('./models/Mute.js'),
-      Poll: require('./models/Poll.js')
+      Poll: require('./models/Poll.js'),
+      User: require('./models/User.js')
     };
   }
 
@@ -32,6 +35,7 @@ class Database {
     this.guildRepo = new GuildRepo(await db.createCollection('guilds'));
     this.muteRepo = new MuteRepo(await db.createCollection('mutes'));
     this.pollRepo = new PollRepo(await db.createCollection('polls'));
+    this.userRepo = new UserRepo(await db.createCollection('users'));
 
     await db.collection('guilds').createIndex('guildId', { unique: true });
   }
