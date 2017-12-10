@@ -1,8 +1,9 @@
 const { Handler, CommandError } = require('patron.js');
 const { DiscordAPIError } = require('discord.js');
+const Constants = require('../utility/Constants.js');
+const Text = require('../utility/Text.js');
 const client = require('../structures/Client.js');
 const handler = new Handler(client.registry);
-const Text = require('../utility/Text.js');
 const XpService = require('../services/XpService.js');
 
 client.on('message', async msg => {
@@ -18,7 +19,7 @@ client.on('message', async msg => {
 
     prefix = msg.dbGuild.settings.prefix;
   } else {
-    prefix = 'p!';
+    prefix = Constants.defaultPrefix;
   }
 
   if (!msg.content.startsWith(prefix)) {

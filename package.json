@@ -1,6 +1,6 @@
 {
   "name": "pixel",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "A free to use, open-source and powerful bot, written in Discord.js",
   "main": "src/app.js",
   "scripts": {
