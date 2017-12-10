@@ -1,5 +1,5 @@
 const { Command, Argument } = require('patron.js');
-const util = require('../../utility');
+const utility = require('../../utility');
 const ModerationService = require('../../services/ModerationService')
 
 class Mute extends Command {
@@ -38,7 +38,7 @@ class Mute extends Command {
 
   async run(msg, args, text) {
     if (msg.dbGuild.roles.muted === null) {
-      return text.sendError('You must set the muted role with the `' + msg.client.config.prefix + 'setmute @Role` command before you can mute users.');
+      return text.sendError('You must set the muted role with the `' + msg.dbGuild.settings.prefix + 'setmute @Role` command before you can mute users.');
     } else if (args.member.roles.has(msg.dbGuild.roles.muted)) {
       return text.sendError('This member is already muted.');
     }
@@ -46,7 +46,7 @@ class Mute extends Command {
     const role = msg.guild.roles.get(msg.dbGuild.roles.muted);
 
     if (role === undefined) {
-      return text.sendError('The set muted role has been deleted. Please set a new one with the `' + msg.client.config.prefix + 'setmute Role` command.');
+      return text.sendError('The set muted role has been deleted. Please set a new one with the `' + msg.dbGuild.settings.prefix + 'setmute Role` command.');
     }
 
     const formattedHours = args.hours + ' hour' + (args.hours === 1 ? '' : 's');
@@ -54,8 +54,8 @@ class Mute extends Command {
     await args.member.addRole(role);
     await text.send('You have successfully muted ' + args.member.user.tag + ' for ' + formattedHours + '.');
     await ModerationService.tryInformUser(msg.guild, msg.author, 'muted', args.member.user, args.reason);
-    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Mute', util.Constants.embedColors.mute, args.reason, msg.author, args.member.user, 'Length', formattedHours);
-    return msg.client.db.muteRepo.insertMute(args.member.id, msg.guild.id, util.Number.hoursToMs(args.hours));
+    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Mute', utility.Constants.embedColors.mute, args.reason, msg.author, args.member.user, 'Length', formattedHours);
+    return msg.client.db.muteRepo.insertMute(args.member.id, msg.guild.id, utility.Number.hoursToMs(args.hours));
   }
 }
 

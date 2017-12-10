@@ -1,19 +1,19 @@
-const patron = require('patron.js');
+const { Command, Argument } = require('patron.js');
 
-class AddModRole extends patron.Command {
+class AddModRole extends Command {
   constructor() {
     super({
       names: ['addmodrole', 'addmod', 'setmod'],
       groupName: 'owners',
       description: 'Add a mod role.',
       args: [
-        new patron.Argument({
+        new Argument({
           name: 'role',
           key: 'role',
           type: 'role',
           example: 'Moderator'
         }),
-        new patron.Argument({
+        new Argument({
           name: 'permissionLevel',
           key: 'permissionLevel',
           type: 'float',

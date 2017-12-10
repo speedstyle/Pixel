@@ -1,6 +1,6 @@
-const patron = require('patron.js');
+const { Command } = require('patron.js');
 
-class DisableWelcome extends patron.Command {
+class DisableWelcome extends Command {
   constructor() {
     super({
       names: ['disablewelcome', 'deletewelcome', 'deletewelcomemessage', 'clearwelcome', 'clearwelcomemessage'],

@@ -1,13 +1,13 @@
-const patron = require('patron.js');
+const { Command, Argument } = require('patron.js');
 
-class SetWelcome extends patron.Command {
+class SetWelcome extends Command {
   constructor() {
     super({
       names: ['setwelcome', 'setwelcomemessage', 'welcome', 'addwelcome'],
       groupName: 'administration',
       description: 'Sets the welcome message.',
       args: [
-        new patron.Argument({
+        new Argument({
           name: 'message',
           key: 'message',
           type: 'string',

@@ -1,13 +1,13 @@
-const patron = require('patron.js');
+const { Command, Argument } = require('patron.js');
 
-class RemoveModRole extends patron.Command {
+class RemoveModRole extends Command {
   constructor() {
     super({
       names: ['removemodrole', 'removemod'],
       groupName: 'owners',
       description: 'Remove a mod role.',
       args: [
-        new patron.Argument({
+        new Argument({
           name: 'role',
           key: 'role',
           type: 'role',

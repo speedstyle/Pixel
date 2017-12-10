@@ -1,5 +1,7 @@
 class Constants {
   constructor() {
+    this.defaultPrefix = 'p!';
+
     this.disabledEvents = [
       'CHANNELS_PIN_UPDATE',
       'MESSAGE_DELETE_BULK',
@@ -45,24 +47,16 @@ class Constants {
       ban: [255, 0, 0]
     };
 
-    this.defaultPrefix = 'p!';
-
-    this.leaderboardCap = 10;
+    this.guildSettings = {
+      prefixLength: 5
+    };
 
     this.intervals = {
       autoUnmute: 30000,
       autoRemovePoll: 30000
     };
 
-    this.guildSettings = {
-      prefixLength: 5
-    };
-
-    this.xp = {
-      messageCooldown: 15000,
-      minCharLength: 5,
-      xpPerMessage: 90
-    };
+    this.leaderboardCap = 10;
 
     this.polls = {
       elderTimeRequired: 172800000,
@@ -73,6 +67,12 @@ class Constants {
 
     this.setgame = {
       maxLength: 128
+    };
+
+    this.xp = {
+      messageCooldown: 15000,
+      minCharLength: 5,
+      xpPerMessage: 90
     };
   }
 }

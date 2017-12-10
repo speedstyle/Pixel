@@ -9,7 +9,9 @@ class NoModerator extends ArgumentPrecondition {
   }
 
   async run(command, msg, argument, args, value, options) {
-    if (ModerationService.getPermLevel(msg.dbGuild, value) === 0) {
+    const member = value.bannable !== undefined ? value : msg.guild.member(value);
+
+    if (msg.guild.members.has(value.id) === false || ModerationService.getPermLevel(msg.dbGuild, member) === 0) {
       return PreconditionResult.fromSuccess();
     }
 

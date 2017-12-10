@@ -1,6 +1,6 @@
-const patron = require('patron.js');
+const { Command, Argument } = require('patron.js');
 
-class SetMutedRole extends patron.Command {
+class SetMutedRole extends Command {
   constructor() {
     super({
       names: ['setmutedrole', 'setmuterole', 'setmute', 'setmuted'],
@@ -8,7 +8,7 @@ class SetMutedRole extends patron.Command {
       description: 'Sets the muted role.',
       botPermissions: ['MANAGE_ROLES'],
       args: [
-        new patron.Argument({
+        new Argument({
           name: 'role',
           key: 'role',
           type: 'role',

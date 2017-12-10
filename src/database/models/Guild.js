@@ -1,3 +1,5 @@
+const Constants = require('../../utility/Constants.js');
+
 class Guild {
   constructor(guildId) {
     this.guildId = guildId;
@@ -11,7 +13,7 @@ class Guild {
     };
 
     this.settings = {
-      prefix: 'p!',
+      prefix: Constants.defaultPrefix,
       welcomeMessage: null
     };
 

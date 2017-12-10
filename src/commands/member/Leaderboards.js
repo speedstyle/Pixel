@@ -1,7 +1,7 @@
+const { Command } = require('patron.js');
 const utility = require('../../utility/');
-const patron = require('patron.js');
 
-class Leaderboards extends patron.Command {
+class Leaderboards extends Command {
   constructor() {
     super({
       names: ['leaderboards', 'lb', 'highscores', 'highscore', 'leaderboard'],

@@ -1,11 +1,7 @@
-const discord = require('discord.js');
-const util = require('../utility');
-const text = require('../utility/Text');
+const utility = require('../utility');
 const client = require('../structures/Client.js');
+const text = require('../utility/Text.js');
 const db = client.db;
-const Constants = require('../utility/Constants');
-const Random = require('../utility/Random');
-const String = require('../utility/String');
 
 class ModerationService {
   getPermLevel(dbGuild, member) {
@@ -25,7 +21,7 @@ class ModerationService {
   }
 
   tryInformUser(guild, author, action, user, reason = '') {
-    return text.send(user, util.String.boldify(msg.author.tag) + ' has ' + action + ' you' + (util.String.isNullOrWhiteSpace(reason) ? '.' : ' for the following reason: ' + reason + '.'), guild);
+    return text.createEmbed(user, utility.String.boldify(author.tag) + ' has ' + action + ' you' + (utility.String.isNullOrWhiteSpace(reason) ? '.' : ' for the following reason: ' + reason + '.'), { footer: { text: guild.name, icon: guild.iconURL }});
   }
 
   async tryModLog(dbGuild, guild, action, color, reason = '', moderator = null, user = null, extraInfoType = '', extraInfo = '') {
@@ -40,7 +36,7 @@ class ModerationService {
     }
 
     const options = {
-      color: Random.arrayElement(Constants.embedColors.defaults),
+      color: utility.Random.arrayElement(utility.Constants.embedColors.defaults),
       footer: {
         text: 'Case #' + dbGuild.misc.caseNumber,
         icon: 'http://i.imgur.com/BQZJAqT.png'
@@ -58,7 +54,7 @@ class ModerationService {
 
     let description = '**Action:** ' + action + '\n';
 
-    if (String.isNullOrWhiteSpace(extraInfoType) === false) {
+    if (utility.String.isNullOrWhiteSpace(extraInfoType) === false) {
       description += '**'+ extraInfoType + ':** ' + extraInfo + '\n';
     }
 
@@ -66,7 +62,7 @@ class ModerationService {
       description += '**User:** ' + user.tag + ' (' + user.id + ')\n';
     }
 
-    if (String.isNullOrWhiteSpace(reason) === false) {
+    if (utility.String.isNullOrWhiteSpace(reason) === false) {
       description += '**Reason:** ' + reason + '\n';
     }
 

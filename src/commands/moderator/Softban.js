@@ -1,8 +1,6 @@
 const { Command, Argument } = require('patron.js');
-const utility = require('../../utility');
 const ModerationService = require('../../services/ModerationService');
-const util = require('../../utility');
-const Constants = require('../../utility/Constants');
+const Constants = require('../../utility/Constants.js');
 
 class Softban extends Command {
   constructor() {
@@ -40,11 +38,17 @@ class Softban extends Command {
   }
 
   async run(msg, args, text) {
+    if (msg.guild.members.has(args.user.id)) {
+      await ModerationService.tryInformUser(msg.guild, msg.author, 'soft-banned', args.user, args.reason);
+    }
+
     await msg.guild.ban(args.user, { reason: args.reason.length === 0 ? '' : args.reason, days: args.days });
     await msg.guild.unban(args.user);
+
     const formattedHours = args.days + ' day' + (args.days === 1 ? '' : 's');
-    await ModerationService.tryInformUser(msg.guild, msg.author, 'soft-banned', args.member.user, args.reason);
-    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Soft-ban', util.Constants.embedColors.ban, args.reason, msg.author, args.member.user, 'Number of days', formattedHours);
+
+    await ModerationService.tryModLog(msg.dbGuild, msg.guild, 'Soft-ban', Constants.embedColors.ban, args.reason, msg.author, args.user, 'Number of days', formattedHours);
+
     return text.send('Successfully softbanned ' + args.user.tag + '.' + '\n**Messages Deleted**: ' + args.days + (args.reason.length === 0 ? '' : '\n**Reason**: ' + args.reason));
   }
 }
