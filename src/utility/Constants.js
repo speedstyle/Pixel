@@ -78,6 +78,8 @@ class Constants {
       globalXpPerMessage: 1
     };
 
+    this.skills = ['magic', 'damage', 'healing', 'craftmanship', 'intelligence', 'haste'];
+
     this.levels = [
       {
         'level': 1,
