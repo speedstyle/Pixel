@@ -8,7 +8,7 @@ Visit the <a href="https://github.com/LumiteDubbz/Pixel/wiki">Wiki</a> to learn 
 <a href="https://twitter.com/lumitedubbz">LumiteDubbz</a><br>
 <a href="https://github.com/assley">Assley</a><br>
 <a href="https://github.com/dafscode">Daf</a> quit developing Pixel, but credit to him for some commands. He is also the hosting manager, so if the bot is offline, ping him!<br>
-<a href="https://github.com/Marathxnz">Luner</a>
+<a href="https://github.com/Marathxnz">Luner</a><br>
 <a href="https://github.com/vim2meta">vim2meta</a> for the docs.
 
 # Support
