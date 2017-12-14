@@ -47,6 +47,10 @@ class Constants {
       ban: [255, 0, 0]
     };
 
+    this.regexes = {
+      capitalize: /\w\S*/g
+    };
+
     this.guildSettings = {
       prefixLength: 5
     };
@@ -72,7 +76,7 @@ class Constants {
     this.xp = {
       messageCooldown: 15000,
       minCharLength: 5,
-      xpPerMessage: 3,
+      xpPerMessage: 90,
       globalMessageCooldown: 15000,
       globalMinCharLength: 10,
       globalXpPerMessage: 1

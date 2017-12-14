@@ -19,7 +19,8 @@ class XpService {
     if (isMessageCooldownOver && isLongEnough) {
       this.messages.set(msg.author.id, Date.now());
       if (msg.dbUser.xp + utility.Constants.xp.xpPerMessage > neededXp) {
-        const newDbUser = await msg.client.db.userRepo.levelUp(msg.dbGuild, msg.member);
+        const newDbUser = await msg.client.db.userRepo.modifyLevel(msg.dbGuild, msg.member, 1);
+        await msg.client.db.userRepo.modifySkillPoints(msg.dbGuild, msg.member, 2);
         await utility.Text.createEmbed(msg.channel, utility.String.boldify(msg.author.tag) + ', Congrats you\'ve ' + (newDbUser.level === 20 ? 'achieved the max level we currently have' : 'advanced to level ' + newDbUser.level) + '!');
       }
 
@@ -40,7 +41,7 @@ class XpService {
     if (globalIsMessageCooldownOver && globalIsLongEnough) {
       this.messages.set(msg.author.id, Date.now());
       if (msg.globalDbUser.xp + utility.Constants.xp.globalXpPerMessage > globalNeededXp) {
-        const newGlobalDbUser = await msg.client.db.globalUserRepo.levelUp(msg.member);
+        const newGlobalDbUser = await msg.client.db.globalUserRepo.modifyLevel(msg.member, 1);
         await utility.Text.createEmbed(msg.channel, utility.String.boldify(msg.author.tag) + ', Congrats you\'ve ' + (newGlobalDbUser.level === 20 ? 'achieved the max global level we currently have' : 'advanced to level ' + newGlobalDbUser.level) + '!');
       }
 

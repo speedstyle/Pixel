@@ -49,12 +49,6 @@ class GlobalUserRepo extends BaseRepo {
     const newDbUser = await this.findUserAndUpsert(member.id, { $inc: { 'level': change } });
 
     return newDbUser;
-  }  
-
-  async levelUp(member) {
-    const newDbUser = await this.findUserAndUpsert(member.id, { $inc: { 'level': 1 } });
-
-    return newDbUser;
   }
 
   deleteUser(userId) {

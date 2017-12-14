@@ -1,6 +1,6 @@
-const { CommandPrecondition, PreconditionResult } = require('patron.js');
+const { Precondition, PreconditionResult } = require('patron.js');
 
-class OwnSkillPoint extends CommandPrecondition {
+class OwnSkillPoint extends Precondition {
   constructor() {
     super({
       name: 'ownskillpoint'

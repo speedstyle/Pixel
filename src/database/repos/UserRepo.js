@@ -45,14 +45,14 @@ class UserRepo extends BaseRepo {
     return newDbUser;
   }
 
-  async modifyLevel(dbGuild, member, change) {
-    const newDbUser = await this.findUserAndUpsert(member.id, dbGuild.guildId, { $inc: { 'level': change } });
-
+  async modifySkillPoints(dbGuild, member, change) {
+    const newDbUser = await this.findUserAndUpsert(member.id, dbGuild.guildId, { $inc: { 'skillPoints': change } });
+    
     return newDbUser;
   }
 
-  async levelUp(dbGuild, member) {
-    const newDbUser = await this.findUserAndUpsert(member.id, dbGuild.guildId, { $inc: { 'level': 1 } });
+  async modifyLevel(dbGuild, member, change) {
+    const newDbUser = await this.findUserAndUpsert(member.id, dbGuild.guildId, { $inc: { 'level': change } });
 
     return newDbUser;
   }
@@ -63,12 +63,6 @@ class UserRepo extends BaseRepo {
 
   deleteUsers(guildId) {
     return this.deleteMany({ guildId: guildId });
-  }
-
-  modifySkillPoints(dbGuild, member, change) {
-    const newDbUser = await this.findUserAndUpsert(member.id, dbGuild.guildId, { $inc: { 'skillPoints': change } });
-    
-    return newDbUser;
   }
 }
 

@@ -14,7 +14,7 @@ class User {
       craftmanship: 1,
       intelligence: 1,
       haste: 1
-     };
+    };
   }
 }
 
