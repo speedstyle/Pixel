@@ -76,7 +76,7 @@ class Constants {
     this.xp = {
       messageCooldown: 15000,
       minCharLength: 5,
-      xpPerMessage: 90,
+      xpPerMessage: 3,
       globalMessageCooldown: 15000,
       globalMinCharLength: 10,
       globalXpPerMessage: 1

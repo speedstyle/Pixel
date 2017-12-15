@@ -7,11 +7,10 @@ class UpgradeSkill extends Command {
       names: ['upgrade', 'upgradeskill'],
       groupName: 'member',
       description: 'Upgrade the level of a skill.',
-      preconditions: ['ownskillpoint'],
       args: [
         new Argument({
-          name: 'amount',
-          key: 'amount',
+          name: 'quantity',
+          key: 'quantity',
           type: 'int',
           example: '5'
         }),
@@ -19,6 +18,7 @@ class UpgradeSkill extends Command {
           name: 'skill',
           key: 'skill',
           type: 'skill',
+          preconditions: ['ownskillpoints'],
           example: 'magic',
           remainder: true
         })
