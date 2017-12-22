@@ -3,6 +3,8 @@ An open-source Discord bot, written with: Library: Discord.js, Framework: Patron
 
 Visit the <a href="https://github.com/LumiteDubbz/Pixel/wiki">Wiki</a> to learn how to setup the bot for yourself, as well as the requirements.
 
+<a href="https://lumitedubbz.github.io/Pixel/">Full Documentation</a>
+
 # Developers
 
 <a href="https://twitter.com/lumitedubbz">LumiteDubbz</a><br>
