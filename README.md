@@ -5,10 +5,6 @@ Visit the <a href="https://github.com/LumiteDubbz/Pixel/wiki">Wiki</a> to learn 
 
 <a href="https://lumitedubbz.github.io/Pixel/">Full Documentation</a>
 
-
-# No more updates because the code is 'weak' and I'm a 'weak bot dev'.
-
-
 # Developers
 
 <a href="https://twitter.com/lumitedubbz">LumiteDubbz</a><br>
