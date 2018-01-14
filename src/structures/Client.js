@@ -1,7 +1,8 @@
 const { Client: DiscordJSClient } = require('discord.js');
 const Constants = require('../utility/Constants.js');
 const Database = require('../database/Database.js');
-const credentials = require('../../credentials.json');
+const envfile = require('fs').readFileSync('../../.env','UTF8');
+const credentials = eval(envfile.splice(1,envfile.indexOf('\n')));
 
 class Client extends DiscordJSClient {
   constructor(config) {
