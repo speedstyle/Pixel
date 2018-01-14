@@ -1,5 +1,6 @@
 const { Precondition, PreconditionResult } = require('patron.js');
-const credentials = require('../../../credentials.json');
+const envfile = require('fs').readFileSync('../../.env','UTF8');
+const credentials = eval(envfile.splice(1,envfile.indexOf('\n')));
 
 class BotOwner extends Precondition {
   constructor() {
